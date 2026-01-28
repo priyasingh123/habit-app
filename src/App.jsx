@@ -31,11 +31,11 @@ function App() {
 
   return (
     <div className="year-board">
-      <button onClick={handleLeftClick}>Left</button>
+      <button className="arrow-btn right" onClick={handleLeftClick}></button>
       <Month date={lastMonth} />
       <Month date={thisMonth} />
       <Month date={nextMonth} />
-      <button onClick={handleRightClick}>Right</button>
+      <button className="arrow-btn left" onClick={handleRightClick}></button>
     </div>
   );
 }

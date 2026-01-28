@@ -30,9 +30,27 @@
 .year-board {
   display: flex;
   justify-content: space-around;
+  height: 200px;
 }
 
 .calender {
   display: flex;
   flex-direction: column;
+}
+
+.arrow-btn {
+  background-color: transparent;
+  align-self: center;
+  border: none;
+  border-top: 31px solid transparent;
+  border-bottom: 31px solid transparent;
+  cursor: pointer;
+}
+
+.arrow-btn.right {
+  border-right: 32px solid white;
+}
+
+.arrow-btn.left {
+  border-left: 32px solid white;
 }
