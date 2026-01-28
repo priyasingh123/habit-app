@@ -32,9 +32,16 @@ function App() {
   return (
     <div className="year-board">
       <button className="arrow-btn right" onClick={handleLeftClick}></button>
-      <Month date={lastMonth} />
-      <Month date={thisMonth} />
-      <Month date={nextMonth} />
+      <div className="month prev">
+        <Month date={lastMonth} />
+      </div>
+
+      <div className="month current">
+        <Month date={thisMonth} />
+      </div>
+      <div className="month next">
+        <Month date={nextMonth} />
+      </div>
       <button className="arrow-btn left" onClick={handleRightClick}></button>
     </div>
   );

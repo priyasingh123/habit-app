@@ -54,3 +54,10 @@
 .arrow-btn.left {
   border-left: 32px solid white;
 }
+
+@media (max-width: 700px) {
+  .month.prev,
+  .month.next {
+    display: none;
+  }
+}
