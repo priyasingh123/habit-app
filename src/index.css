@@ -61,3 +61,27 @@
     display: none;
   }
 }
+
+@media (max-width: 500px) {
+  .arrow-btn.right {
+    background-color: transparent;
+    align-self: center;
+    border: none;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    cursor: pointer;
+    border-right: 17px solid white;
+    margin-right: 5px;
+  }
+
+  .arrow-btn.left {
+    background-color: transparent;
+    align-self: center;
+    border: none;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    cursor: pointer;
+    border-left: 17px solid white;
+    margin-left: 5px;
+  }
+}
