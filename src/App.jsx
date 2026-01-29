@@ -18,6 +18,17 @@ function App() {
     );
   };
 
+  const isSameMonth = (date) => {
+    const today = new Date();
+    if (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth()
+    ) {
+      return today.getDate();
+    }
+    return null;
+  };
+
   let lastMonth = new Date(
     thisMonth.getFullYear(),
     thisMonth.getMonth() - 1,
@@ -33,14 +44,14 @@ function App() {
     <div className="year-board">
       <button className="arrow-btn right" onClick={handleLeftClick}></button>
       <div className="month prev">
-        <Month date={lastMonth} />
+        <Month date={lastMonth} today={isSameMonth(lastMonth)} />
       </div>
 
       <div className="month current">
-        <Month date={thisMonth} />
+        <Month date={thisMonth} today={isSameMonth(thisMonth)} />
       </div>
       <div className="month next">
-        <Month date={nextMonth} />
+        <Month date={nextMonth} today={isSameMonth(nextMonth)} />
       </div>
       <button className="arrow-btn left" onClick={handleRightClick}></button>
     </div>

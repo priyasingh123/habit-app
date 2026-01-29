@@ -1,15 +1,17 @@
-export const Days = ({ startDay, lastDay }) => {
+import { Date } from "./Date";
+
+export const Days = ({ startDay, lastDay, today }) => {
   const totalCells = startDay + lastDay;
 
   return (
     <div className="month-days">
       {Array.from({ length: totalCells }).map((_, index) => {
         if (index < startDay) {
-          return <span key={index}></span>;
+          return <Date key={index} />;
         }
 
         const dayNumber = index - startDay + 1;
-        return <span key={index}>{dayNumber}</span>;
+        return <Date key={index} dayNumber={dayNumber} today={today} />;
       })}
     </div>
   );
