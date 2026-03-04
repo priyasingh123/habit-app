@@ -1,6 +1,8 @@
 import "./App.css";
 import { useState } from "react";
 import { Month } from "./components/Month";
+import { HabitDrawer } from "./components/Drawer";
+import { Provider } from "./components/Provider";
 
 function App() {
   const [thisMonth, setThisMonth] = useState(
@@ -41,20 +43,23 @@ function App() {
   );
 
   return (
-    <div className="year-board">
-      <button className="arrow-btn right" onClick={handleLeftClick}></button>
-      <div className="month prev">
-        <Month date={lastMonth} today={isSameMonth(lastMonth)} />
-      </div>
+    <Provider>
+      <div className="year-board">
+        <button className="arrow-btn right" onClick={handleLeftClick}></button>
+        <div className="month prev">
+          <Month date={lastMonth} today={isSameMonth(lastMonth)} />
+        </div>
 
-      <div className="month current">
-        <Month date={thisMonth} today={isSameMonth(thisMonth)} />
+        <div className="month current">
+          <Month date={thisMonth} today={isSameMonth(thisMonth)} />
+        </div>
+        <div className="month next">
+          <Month date={nextMonth} today={isSameMonth(nextMonth)} />
+        </div>
+        <button className="arrow-btn left" onClick={handleRightClick}></button>
       </div>
-      <div className="month next">
-        <Month date={nextMonth} today={isSameMonth(nextMonth)} />
-      </div>
-      <button className="arrow-btn left" onClick={handleRightClick}></button>
-    </div>
+      <HabitDrawer />
+    </Provider>
   );
 }
 
