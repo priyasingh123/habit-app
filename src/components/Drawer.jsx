@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Drawer } from "@chakra-ui/react";
 import HabitList from "./HabitList";
+import DrawerContent from "../components/DrawerContent";
 
 export const HabitDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -22,13 +23,9 @@ export const HabitDrawer = () => {
             color="white"
           >
             <Drawer.CloseTrigger />
-            <Drawer.Header>
-              <Drawer.Title>My Drawer</Drawer.Title>
-            </Drawer.Header>
             <Drawer.Body>
-              <HabitList />
+              <DrawerContent />
             </Drawer.Body>
-            <Drawer.Footer>Footer</Drawer.Footer>
           </Drawer.Content>
         </Drawer.Positioner>
       </Drawer.Root>
