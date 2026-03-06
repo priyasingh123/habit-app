@@ -3,14 +3,12 @@ import { Drawer } from "@chakra-ui/react";
 import HabitList from "./HabitList";
 import DrawerContent from "../components/DrawerContent";
 
-export const HabitDrawer = () => {
-  const [open, setOpen] = useState(false);
+export const HabitDrawer = ({ openDrawer, setOpenDrawer }) => {
   return (
     <>
-      <button onClick={() => setOpen(true)}>OPEN</button>
       <Drawer.Root
-        open={open}
-        onOpenChange={(e) => setOpen(e.open)}
+        open={openDrawer}
+        onOpenChange={(e) => setOpenDrawer(e.open)}
         placement="bottom"
         size="lg"
       >

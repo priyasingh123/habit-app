@@ -5,6 +5,7 @@ import { HabitDrawer } from "./components/Drawer";
 import { Provider } from "./components/Provider";
 
 function App() {
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [thisMonth, setThisMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );
@@ -47,18 +48,30 @@ function App() {
       <div className="year-board">
         <button className="arrow-btn right" onClick={handleLeftClick}></button>
         <div className="month prev">
-          <Month date={lastMonth} today={isSameMonth(lastMonth)} />
+          <Month
+            date={lastMonth}
+            today={isSameMonth(lastMonth)}
+            setOpenDrawer={setOpenDrawer}
+          />
         </div>
 
         <div className="month current">
-          <Month date={thisMonth} today={isSameMonth(thisMonth)} />
+          <Month
+            date={thisMonth}
+            today={isSameMonth(thisMonth)}
+            setOpenDrawer={setOpenDrawer}
+          />
         </div>
         <div className="month next">
-          <Month date={nextMonth} today={isSameMonth(nextMonth)} />
+          <Month
+            date={nextMonth}
+            today={isSameMonth(nextMonth)}
+            setOpenDrawer={setOpenDrawer}
+          />
         </div>
         <button className="arrow-btn left" onClick={handleRightClick}></button>
       </div>
-      <HabitDrawer />
+      <HabitDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
     </Provider>
   );
 }

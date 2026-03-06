@@ -1,7 +1,19 @@
-export const Date = ({ dayNumber, today }) => {
+export const Date = ({ dayNumber, today, setOpenDrawer }) => {
   if (dayNumber && dayNumber === today) {
-    return <span className="today">{dayNumber}</span>;
+    return (
+      <span
+        className="today"
+        onClick={() => setOpenDrawer(true)}
+        style={{ cursor: "pointer" }}
+      >
+        {dayNumber}
+      </span>
+    );
   } else {
-    return <span>{dayNumber}</span>;
+    return (
+      <span onClick={() => setOpenDrawer(true)} style={{ cursor: "pointer" }}>
+        {dayNumber}
+      </span>
+    );
   }
 };
