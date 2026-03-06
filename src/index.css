@@ -135,6 +135,10 @@
   align-items: flex-start;
   background-color: rgb(11, 124, 86);
 }
+.habit:hover {
+  background-color: rgb(11, 100, 80);
+  box-shadow: 8px 8px 8px teal;
+}
 
 .habit_text {
   flex: 1;
@@ -144,4 +148,14 @@
 
 .check_icon {
   margin-left: auto;
+  cursor: pointer;
+}
+
+.submit_btn {
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: rgb(11, 124, 100);
+  padding: 0.5% 1%;
+  cursor: pointer;
 }

@@ -44,20 +44,30 @@ const HabitList = () => {
   }, []);
 
   return (
-    <div className="habit_list_container">
-      {habitList.map((habit, index) => {
-        return (
-          <div className="habit" key={`${index}`}>
-            <p className="habit_text">{habit}</p>
-            <div className="check_icon">
-              <Icon
-                as={tasks.habits[index] === false ? Square : CheckSquare}
-                onClick={() => dispatch({ type: "toggle", payload: index })}
-              />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
+      <div className="habit_list_container">
+        {habitList.map((habit, index) => {
+          return (
+            <div className="habit" key={`${index}`}>
+              <p className="habit_text">{habit}</p>
+              <div className="check_icon">
+                <Icon
+                  as={tasks.habits[index] === false ? Square : CheckSquare}
+                  onClick={() => dispatch({ type: "toggle", payload: index })}
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      <button className="submit_btn">SUBMIT</button>
     </div>
   );
 };
