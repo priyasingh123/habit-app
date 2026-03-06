@@ -1,9 +1,10 @@
 export function fetchHabits() {
   return [
-    "Walk for 10 mins",
-    "Lift weights",
-    "Drink 2 lts of water",
-    "Sleep for 8 hours as it is good for body and also for mind Sleep for 8 hours as it is good for body and also for mind",
-    "Walk for 10 mins",
+    "Wake up at 5 AM",
+    "Running 10 mins",
+    "Cycling 12 mins",
+    "Drink 2 litres of water",
+    "Sleep 8 hours",
+    "Zumba",
   ];
 }

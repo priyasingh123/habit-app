@@ -8,7 +8,7 @@ const Loader = ({ percentage }) => {
             "--progress": percentage * 3.6 + "deg",
           }}
         >
-          <div className="inner_circle">{percentage}%</div>
+          <div className="inner_circle">{percentage.toFixed(2)}%</div>
         </div>
       </div>
     </div>
