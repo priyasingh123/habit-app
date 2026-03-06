@@ -3,9 +3,13 @@ import Summary from "./Summary";
 
 const DrawerContent = () => {
   return (
-    <div>
-      <HabitList />
-      <Summary />
+    <div className="drawer_container">
+      <div className="habitlist">
+        <HabitList />
+      </div>
+      <div className="summary">
+        <Summary />
+      </div>
     </div>
   );
 };

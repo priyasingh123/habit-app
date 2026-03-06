@@ -19,7 +19,7 @@ export const HabitDrawer = () => {
           <Drawer.Content
             h="75vh"
             borderTopRadius="2xl"
-            bg="rgb(92, 137, 122)"
+            bg="rgb(51, 164, 106)"
             color="white"
           >
             <Drawer.CloseTrigger />

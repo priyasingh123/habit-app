@@ -3,6 +3,7 @@ export function fetchHabits() {
     "Walk for 10 mins",
     "Lift weights",
     "Drink 8 lts of water",
-    "Sleep for 8 hours",
+    "Sleep for 8 hours as it is good for body and also for mind Sleep for 8 hours as it is good for body and also for mind",
+    "Walk for 10 mins",
   ];
 }

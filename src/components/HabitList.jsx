@@ -1,5 +1,7 @@
+import { Icon } from "@chakra-ui/react";
 import { fetchHabits } from "../mockData/habits";
 import { useEffect, useState } from "react";
+import { Check, CheckSquare, Square } from "lucide-react";
 
 const HabitList = () => {
   const [habitList, setHabitList] = useState([]);
@@ -12,11 +14,14 @@ const HabitList = () => {
     fetchHabitList();
   }, []);
   return (
-    <div>
-      {habitList.map((habit) => {
+    <div className="habit_list_container">
+      {habitList.map((habit, index) => {
         return (
-          <div>
-            <p>{habit}</p>
+          <div className="habit" key={`${index}`}>
+            <p className="habit_text">{habit}</p>
+            <div className="check_icon">
+              <Icon as={Square} />
+            </div>
           </div>
         );
       })}
