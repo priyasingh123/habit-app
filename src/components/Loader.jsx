@@ -1,17 +1,18 @@
-const Loader = () => {
-  const percentage = 13;
-
+const Loader = ({ percentage }) => {
   return (
     <div className="loader_container">
-      <div
-        className="circle_loader"
-        style={{
-          background: `conic-gradient(#4caf50 ${percentage * 3.6}deg, #e5e5e5 0deg)`,
-        }}
-      >
-        <div className="inner_circle">{percentage}%</div>
+      <div className="circle_loader">
+        <div
+          className="progress_ring"
+          style={{
+            "--progress": percentage * 3.6 + "deg",
+          }}
+        >
+          <div className="inner_circle">{percentage}%</div>
+        </div>
       </div>
     </div>
   );
 };
+
 export default Loader;

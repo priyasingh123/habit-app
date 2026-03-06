@@ -1,10 +1,10 @@
 import Loader from "./Loader";
 
-const Summary = () => {
+const Summary = ({ percentage }) => {
   return (
     <div>
       <header>Summary</header>
-      <Loader />
+      <Loader percentage={percentage} />
     </div>
   );
 };

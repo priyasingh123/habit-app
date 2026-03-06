@@ -3,10 +3,25 @@ import { fetchHabits } from "../mockData/habits";
 import { useEffect, useState, useReducer } from "react";
 import { CheckSquare, Square } from "lucide-react";
 
-const HabitList = () => {
+const HabitList = ({ setPercentage }) => {
   const [habitList, setHabitList] = useState([]);
+
   const initialTasks = {
     habits: Array(habitList.length).fill(false),
+  };
+  const handleSubmit = () => {
+    const percent = calculatePercentage();
+    setPercentage(percent);
+  };
+  const calculatePercentage = () => {
+    const completed = tasks.habits.reduce((acc, habit) => {
+      if (habit) {
+        acc += 1;
+      }
+      return acc;
+    }, 0);
+    const percentage = (completed / tasks.habits.length) * 100;
+    return percentage;
   };
   const [tasks, dispatch] = useReducer((state, action) => {
     switch (action.type) {
@@ -67,7 +82,9 @@ const HabitList = () => {
           );
         })}
       </div>
-      <button className="submit_btn">SUBMIT</button>
+      <button className="submit_btn" onClick={handleSubmit}>
+        SUBMIT
+      </button>
     </div>
   );
 };
