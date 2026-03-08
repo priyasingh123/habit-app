@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { Drawer } from "@chakra-ui/react";
-import HabitList from "./HabitList";
 import DrawerContent from "../components/DrawerContent";
 
 export const HabitDrawer = ({ openDrawer, setOpenDrawer }) => {
