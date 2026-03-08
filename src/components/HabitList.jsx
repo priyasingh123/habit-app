@@ -1,26 +1,27 @@
 import { Icon } from "@chakra-ui/react";
 import { fetchHabits } from "../mockData/habits";
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { CheckSquare, Square } from "lucide-react";
 
 const HabitList = ({ setPercentage }) => {
-  const [habitList, setHabitList] = useState([]);
+  // const [habitList, setHabitList] = useState([]);
 
   const initialTasks = {
-    habits: Array(habitList.length).fill(false),
+    habits: [],
+    completed: [],
   };
   const handleSubmit = () => {
     const percent = calculatePercentage();
     setPercentage(percent);
   };
   const calculatePercentage = () => {
-    const completed = tasks.habits.reduce((acc, habit) => {
+    const completed = tasks.completed.reduce((acc, habit) => {
       if (habit) {
         acc += 1;
       }
       return acc;
     }, 0);
-    const percentage = (completed / tasks.habits.length) * 100;
+    const percentage = (completed / tasks.completed.length) * 100;
     return percentage;
   };
   const [tasks, dispatch] = useReducer((state, action) => {
@@ -28,22 +29,23 @@ const HabitList = ({ setPercentage }) => {
       case "add":
         return {
           ...state,
-          habits: [...state.habits, false],
+          completed: [...state.completed, false],
         };
       case "initialize": {
-        console.log("initialize", action.payload);
+        console.log("initialize", action.payload.habits);
         return {
           ...state,
-          habits: Array(action.payload).fill(false),
+          habits: action.payload.habits,
+          completed: Array(action.payload.habits.length).fill(false),
         };
       }
       case "toggle": {
-        const habitNumber = action.payload;
-        const arr = [...state.habits];
+        const habitNumber = action.payload.habitNumber;
+        const arr = [...state.completed];
         arr[habitNumber] = !arr[habitNumber];
         return {
           ...state,
-          habits: arr,
+          completed: arr,
         };
       }
     }
@@ -52,8 +54,8 @@ const HabitList = ({ setPercentage }) => {
   useEffect(() => {
     const fetchDetails = () => {
       const habits = fetchHabits();
-      setHabitList(habits);
-      dispatch({ type: "initialize", payload: habits.length });
+      // setHabitList(habits);
+      dispatch({ type: "initialize", payload: { habits: habits } });
     };
     fetchDetails();
   }, []);
@@ -68,14 +70,19 @@ const HabitList = ({ setPercentage }) => {
       }}
     >
       <div className="habit_list_container">
-        {habitList.map((habit, index) => {
+        {tasks.habits.map((habit, index) => {
           return (
             <div className="habit" key={`${index}`}>
               <p className="habit_text">{habit}</p>
               <div className="check_icon">
                 <Icon
-                  as={tasks.habits[index] === false ? Square : CheckSquare}
-                  onClick={() => dispatch({ type: "toggle", payload: index })}
+                  as={tasks.completed[index] === false ? Square : CheckSquare}
+                  onClick={() =>
+                    dispatch({
+                      type: "toggle",
+                      payload: { habitNumber: index },
+                    })
+                  }
                 />
               </div>
             </div>
