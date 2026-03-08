@@ -172,7 +172,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin: 10% 0;
+
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .circle_loader {
@@ -212,4 +215,37 @@
   font-size: 22px;
   font-weight: bold;
   color: rgb(11, 124, 100);
+}
+
+/* New Button*/
+.new_habit_container {
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 2%;
+  margin: auto;
+  width: 65%;
+  display: flex;
+  gap: 5px;
+}
+
+.new_input {
+  background-color: azure;
+  color: black;
+  flex: 1;
+  border: none;
+}
+.new_input:focus {
+  outline: none;
+}
+
+.new_btn {
+  background-color: rgb(11, 100, 80);
+  color: azure;
+  border-radius: 5px;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.summary_title {
+  font-size: large;
 }

@@ -1,10 +1,12 @@
 import Loader from "./Loader";
+import NewHabit from "./NewHabit";
 
 const Summary = ({ percentage }) => {
   return (
     <div>
-      <header>Summary</header>
+      <header className="summary_title">Summary</header>
       <Loader percentage={percentage} />
+      <NewHabit />
     </div>
   );
 };
