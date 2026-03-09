@@ -3,22 +3,7 @@ import { fetchHabits } from "../mockData/habits";
 import { useEffect } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 
-const HabitList = ({ setPercentage, tasks, dispatch }) => {
-  const handleSubmit = () => {
-    const percent = calculatePercentage();
-    setPercentage(percent);
-  };
-  const calculatePercentage = () => {
-    const completed = tasks.completed.reduce((acc, habit) => {
-      if (habit) {
-        acc += 1;
-      }
-      return acc;
-    }, 0);
-    const percentage = (completed / tasks.completed.length) * 100;
-    return percentage;
-  };
-
+const HabitList = ({ tasks, dispatch }) => {
   useEffect(() => {
     const fetchDetails = () => {
       const habits = fetchHabits();
@@ -66,9 +51,6 @@ const HabitList = ({ setPercentage, tasks, dispatch }) => {
           );
         })}
       </div>
-      <button className="submit_btn" onClick={handleSubmit}>
-        SUBMIT
-      </button>
     </div>
   );
 };

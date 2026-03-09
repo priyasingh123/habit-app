@@ -1,4 +1,6 @@
-const Loader = ({ percentage }) => {
+const Loader = ({ tasks, calculatePercentage }) => {
+  let percentage = calculatePercentage(tasks);
+
   return (
     <div className="loader_container">
       <div className="circle_loader">
