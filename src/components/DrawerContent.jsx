@@ -33,6 +33,20 @@ const DrawerContent = () => {
           completed: arr,
         };
       }
+      case "delete": {
+        const habitNumber = action.payload.habitNumber;
+        const arr = [...state.completed].filter(
+          (_, index) => index !== habitNumber,
+        );
+        const habitsArr = [...state.habits].filter(
+          (_, index) => index !== habitNumber,
+        );
+        return {
+          ...state,
+          habits: habitsArr,
+          completed: arr,
+        };
+      }
     }
   }, initialTasks);
   return (
