@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useHabitStore } from "../store/useHabitStore";
 
-const NewHabit = ({ dispatch }) => {
+const NewHabit = () => {
   const [newHabitVal, setNewHabitVal] = useState("");
+  const createHabit = useHabitStore((state) => state.createHabit);
   const handleAdd = () => {
     if (newHabitVal.trim()) {
-      dispatch({ type: "add", payload: { newHabit: newHabitVal } });
+      createHabit(newHabitVal);
       setNewHabitVal("");
     }
   };

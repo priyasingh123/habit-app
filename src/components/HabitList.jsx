@@ -3,16 +3,14 @@ import { useEffect } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 
-const HabitList = ({ tasks, dispatch }) => {
+const HabitList = ({ tasks }) => {
   const habits = useHabitStore((state) => state.habits);
+  const fetchHabits = useHabitStore((state) => state.fetchHabits);
   useEffect(() => {
-    const fetchDetails = () => {
-      dispatch({ type: "initialize", payload: { habits } });
-    };
-    fetchDetails();
+    fetchHabits();
   }, []);
 
-  if (tasks.habits.length === 0) {
+  if (habits.length === 0) {
     return (
       <div style={{ marginTop: "5%", fontSize: "x-large" }}>
         Add New Habits to show here !
@@ -30,29 +28,14 @@ const HabitList = ({ tasks, dispatch }) => {
       }}
     >
       <div className="habit_list_container">
-        {tasks.habits.map((habit, index) => {
+        {habits.map((habit, index) => {
           return (
             <div className="habit" key={`${index}`}>
-              <CircleX
-                className="delete_icon"
-                size={22}
-                onClick={() =>
-                  dispatch({
-                    type: "delete",
-                    payload: { habitNumber: index },
-                  })
-                }
-              />
+              <CircleX className="delete_icon" size={22} />
               <p className="habit_text">{habit.title}</p>
               <div className="check_icon">
                 <Icon
                   as={tasks.completed[index] === false ? Square : CheckSquare}
-                  onClick={() =>
-                    dispatch({
-                      type: "toggle",
-                      payload: { habitNumber: index },
-                    })
-                  }
                 />
               </div>
             </div>
