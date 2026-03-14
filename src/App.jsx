@@ -1,14 +1,20 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Month } from "./components/Month";
 import { HabitDrawer } from "./components/Drawer";
 import { Provider } from "./components/Provider";
+import { useHabitStore } from "./store/useHabitStore";
 
 function App() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [thisMonth, setThisMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );
+  const fetchHabits = useHabitStore((state) => state.fetchHabits);
+
+  useEffect(() => {
+    fetchHabits();
+  }, [fetchHabits]);
   const handleLeftClick = () => {
     setThisMonth(
       (prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1),

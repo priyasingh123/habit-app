@@ -1,5 +1,5 @@
 export async function apiRequest(endpoint, options = {}) {
-  const BASE_URL = "http://localhost:5000/";
+  const BASE_URL = "http://localhost:5000";
 
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
