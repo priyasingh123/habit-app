@@ -1,5 +1,8 @@
 const Loader = ({ tasks, calculatePercentage }) => {
   let percentage = calculatePercentage(tasks);
+  if (Number.isNaN(percentage)) {
+    percentage = 0;
+  }
 
   return (
     <div className="loader_container">

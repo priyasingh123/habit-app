@@ -1,16 +1,24 @@
 import { Icon } from "@chakra-ui/react";
-import { fetchHabits } from "../mockData/habits";
 import { useEffect } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
+import { useHabitStore } from "../store/useHabitStore";
 
 const HabitList = ({ tasks, dispatch }) => {
+  const habits = useHabitStore((state) => state.habits);
   useEffect(() => {
     const fetchDetails = () => {
-      const habits = fetchHabits();
-      dispatch({ type: "initialize", payload: { habits: habits } });
+      dispatch({ type: "initialize", payload: { habits } });
     };
     fetchDetails();
   }, []);
+
+  if (tasks.habits.length === 0) {
+    return (
+      <div style={{ marginTop: "5%", fontSize: "x-large" }}>
+        Add New Habits to show here !
+      </div>
+    );
+  }
 
   return (
     <div
@@ -35,7 +43,7 @@ const HabitList = ({ tasks, dispatch }) => {
                   })
                 }
               />
-              <p className="habit_text">{habit}</p>
+              <p className="habit_text">{habit.title}</p>
               <div className="check_icon">
                 <Icon
                   as={tasks.completed[index] === false ? Square : CheckSquare}
