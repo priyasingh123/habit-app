@@ -16,6 +16,7 @@ export const Month = ({ date, today, setOpenDrawer }) => {
         startDay={startDay}
         lastDay={lastDay}
         today={today}
+        date={date}
         setOpenDrawer={setOpenDrawer}
       />
     </div>

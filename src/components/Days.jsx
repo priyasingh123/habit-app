@@ -1,6 +1,6 @@
 import { Date } from "./Date";
 
-export const Days = ({ startDay, lastDay, today, setOpenDrawer }) => {
+export const Days = ({ startDay, lastDay, today, setOpenDrawer, date }) => {
   const totalCells = startDay + lastDay;
 
   return (
@@ -14,6 +14,7 @@ export const Days = ({ startDay, lastDay, today, setOpenDrawer }) => {
         return (
           <Date
             key={index}
+            date={date}
             dayNumber={dayNumber}
             today={today}
             setOpenDrawer={setOpenDrawer}

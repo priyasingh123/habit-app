@@ -1,4 +1,4 @@
-import { apiRequest } from "./apiService";
+import { apiRequest } from "../api/apiClient";
 
 export function getDayRecord(date) {
   return apiRequest(`/dayrecords/${date}`);
