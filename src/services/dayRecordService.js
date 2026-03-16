@@ -1,7 +1,9 @@
 import { apiRequest } from "../api/apiClient";
 
 export function getDayRecord(date) {
-  return apiRequest(`/dayrecords/${date}`);
+  return apiRequest(
+    `/dayrecords/${new Date(date).toISOString().split("T")[0]}`,
+  );
 }
 
 export function createUpdateDayRecord(date, habitIds) {
