@@ -1,4 +1,4 @@
-import { Date } from "./Date";
+import { CustomDate } from "./Date";
 
 export const Days = ({ startDay, lastDay, today, setOpenDrawer, date }) => {
   const totalCells = startDay + lastDay;
@@ -7,12 +7,12 @@ export const Days = ({ startDay, lastDay, today, setOpenDrawer, date }) => {
     <div className="month-days">
       {Array.from({ length: totalCells }).map((_, index) => {
         if (index < startDay) {
-          return <Date key={index} setOpenDrawer={setOpenDrawer} />;
+          return <CustomDate key={index} setOpenDrawer={setOpenDrawer} />;
         }
 
         const dayNumber = index - startDay + 1;
         return (
-          <Date
+          <CustomDate
             key={index}
             date={date}
             dayNumber={dayNumber}

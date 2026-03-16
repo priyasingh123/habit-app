@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
@@ -9,9 +9,15 @@ const HabitList = ({ tasks }) => {
   const date = useDayRecordStore((state) => state.date);
   const fetchHabits = useHabitStore((state) => state.fetchHabits);
   const deleteHabit = useHabitStore((state) => state.deleteHabit);
+  const hasFetched = useRef(false);
   useEffect(() => {
-    fetchHabits();
-    console.log("date", date);
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+    const getHabitList = () => {
+      fetchHabits();
+      console.log("date", date);
+    };
+    getHabitList();
   }, []);
 
   const handleDeleteHabit = (id) => {
