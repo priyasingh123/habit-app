@@ -10,7 +10,8 @@ export async function apiRequest(endpoint, options = {}) {
       ...options,
     });
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Request failed");
     }
     return response.json();
   } catch (e) {

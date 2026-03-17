@@ -4,6 +4,7 @@ import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
+import { toaster } from "./toaster";
 
 const HabitList = ({ record, setRecord }) => {
   const firstRef = useRef(false);
@@ -12,6 +13,7 @@ const HabitList = ({ record, setRecord }) => {
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
+  const date = useDayRecordStore((state) => state.date);
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
@@ -34,6 +36,22 @@ const HabitList = ({ record, setRecord }) => {
     return isSame(record, dayRecord);
   };
 
+  const handleSaveChanges = () => {
+    updateDayRecord(record)
+      .then(() => {
+        toaster.create({
+          title: "Saved successfully",
+          type: "success",
+        });
+      })
+      .catch((error) => {
+        toaster.create({
+          title: `Error saving changes: ${error.message}`,
+          type: "error",
+        });
+      });
+  };
+
   if (habits.length === 0) {
     return (
       <div style={{ marginTop: "5%", fontSize: "x-large" }}>
@@ -50,6 +68,9 @@ const HabitList = ({ record, setRecord }) => {
         height: "100%",
       }}
     >
+      <header className="summary_title">
+        Date: {new Date(date).toLocaleDateString()}
+      </header>
       <div className="habit_list_container">
         {habits
           .filter((habit) => !habit.isArchived)
@@ -74,7 +95,7 @@ const HabitList = ({ record, setRecord }) => {
       </div>
       <button
         className="save_button"
-        onClick={() => updateDayRecord(record)}
+        onClick={() => handleSaveChanges()}
         disabled={isSaveBtnDisabled()}
       >
         Save Changes

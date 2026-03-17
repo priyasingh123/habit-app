@@ -19,11 +19,7 @@ export const useDayRecordStore = create((set, get) => ({
     }
   },
   updateDayRecord: async (habitIds) => {
-    try {
-      const response = await createUpdateDayRecord(get().date, habitIds);
-      set({ dayRecord: response.completed });
-    } catch (error) {
-      console.error("Error updating day record", error);
-    }
+    const response = await createUpdateDayRecord(get().date, habitIds);
+    set({ dayRecord: response.completed });
   },
 }));

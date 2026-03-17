@@ -4,6 +4,8 @@ import { Month } from "./components/Month";
 import { HabitDrawer } from "./components/Drawer";
 import { Provider } from "./components/Provider";
 import { useHabitStore } from "./store/useHabitStore";
+import { Toaster, Toast } from "@chakra-ui/react";
+import { toaster } from "./components/toaster";
 
 function App() {
   const firstFetchedRef = useRef(false);
@@ -54,6 +56,13 @@ function App() {
 
   return (
     <Provider>
+      <Toaster toaster={toaster}>
+        {(toast) => (
+          <Toast.Root maxWidth="360px" mx="auto">
+            <Toast.Title>{toast.title}</Toast.Title>
+          </Toast.Root>
+        )}
+      </Toaster>
       <div className="year-board">
         <button className="arrow-btn right" onClick={handleLeftClick}></button>
         <div className="month prev">
