@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
+import { isSame } from "../utils/helperFunctions";
 
 const HabitList = ({ record, setRecord }) => {
   const firstRef = useRef(false);
@@ -10,6 +11,7 @@ const HabitList = ({ record, setRecord }) => {
   const deleteHabit = useHabitStore((state) => state.deleteHabit);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
+  const dayRecord = useDayRecordStore((state) => state.dayRecord);
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
@@ -26,6 +28,10 @@ const HabitList = ({ record, setRecord }) => {
     } else {
       setRecord((prev) => [...prev, id]);
     }
+  };
+
+  const isSaveBtnDisabled = () => {
+    return isSame(record, dayRecord);
   };
 
   if (habits.length === 0) {
@@ -66,7 +72,11 @@ const HabitList = ({ record, setRecord }) => {
             );
           })}
       </div>
-      <button className="save_button" onClick={() => updateDayRecord(record)}>
+      <button
+        className="save_button"
+        onClick={() => updateDayRecord(record)}
+        disabled={isSaveBtnDisabled()}
+      >
         Save Changes
       </button>
     </div>
