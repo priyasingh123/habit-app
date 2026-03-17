@@ -1,22 +1,38 @@
 import { Icon } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 
-const HabitList = ({ tasks }) => {
+const HabitList = () => {
+  const [record, setRecord] = useState([]);
+  const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
   const deleteHabit = useHabitStore((state) => state.deleteHabit);
   const thisDate = useDayRecordStore((state) => state.date);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   useEffect(() => {
-    if (thisDate) {
-      const record = fetchDayRecord(thisDate);
-    }
-  }, []);
+    if (firstRef.current) return;
+    firstRef.current = true;
+    const fetchRecord = async () => {
+      if (thisDate) {
+        fetchDayRecord(thisDate)
+          .then((res) => {
+            console.log("res.completed", res.completed);
+            setRecord(res.completed);
+          })
+          .catch(() => setRecord([]));
+      }
+    };
+    fetchRecord();
+  }, [fetchDayRecord, thisDate]);
 
-  const handleDeleteHabit = (id) => {
-    deleteHabit(id);
+  const handleHabitComplete = (id) => {
+    if (record.includes(id)) {
+      setRecord((prev) => prev.filter((habitId) => habitId !== id));
+    } else {
+      setRecord((prev) => [...prev, id]);
+    }
   };
 
   if (habits.length === 0) {
@@ -26,7 +42,6 @@ const HabitList = ({ tasks }) => {
       </div>
     );
   }
-
   return (
     <div
       style={{
@@ -45,12 +60,13 @@ const HabitList = ({ tasks }) => {
                 <CircleX
                   className="delete_icon"
                   size={22}
-                  onClick={() => handleDeleteHabit(habit._id)}
+                  onClick={() => deleteHabit(habit._id)}
                 />
                 <p className="habit_text">{habit.title}</p>
                 <div className="check_icon">
                   <Icon
-                    as={tasks.completed[index] === false ? Square : CheckSquare}
+                    as={!record.includes(habit._id) ? Square : CheckSquare}
+                    onClick={() => handleHabitComplete(habit._id)}
                   />
                 </div>
               </div>
