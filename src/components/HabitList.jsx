@@ -1,31 +1,24 @@
 import { Icon } from "@chakra-ui/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CheckSquare, Square, CircleX } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 
-const HabitList = () => {
-  const [record, setRecord] = useState([]);
+const HabitList = ({ record, setRecord }) => {
   const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
   const deleteHabit = useHabitStore((state) => state.deleteHabit);
-  const thisDate = useDayRecordStore((state) => state.date);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
+  const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
     const fetchRecord = async () => {
-      if (thisDate) {
-        fetchDayRecord(thisDate)
-          .then((res) => {
-            console.log("res.completed", res.completed);
-            setRecord(res.completed);
-          })
-          .catch(() => setRecord([]));
-      }
+      const completedArr = await fetchDayRecord();
+      setRecord(completedArr);
     };
     fetchRecord();
-  }, [fetchDayRecord, thisDate]);
+  }, [fetchDayRecord]);
 
   const handleHabitComplete = (id) => {
     if (record.includes(id)) {
@@ -73,6 +66,9 @@ const HabitList = () => {
             );
           })}
       </div>
+      <button className="save_button" onClick={() => updateDayRecord(record)}>
+        Save Changes
+      </button>
     </div>
   );
 };

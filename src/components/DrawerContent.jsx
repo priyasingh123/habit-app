@@ -1,8 +1,9 @@
 import HabitList from "./HabitList";
 import Summary from "./Summary";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 const DrawerContent = () => {
+  const [record, setRecord] = useState([]);
   const initialTasks = {
     habits: [],
     completed: [],
@@ -50,26 +51,22 @@ const DrawerContent = () => {
     }
   }, initialTasks);
 
-  const calculatePercentage = (tasks) => {
-    const completed = tasks.completed.reduce((acc, habit) => {
-      if (habit) {
-        acc += 1;
-      }
-      return acc;
-    }, 0);
-    const percentage = (completed / tasks.completed.length) * 100;
-    return percentage;
-  };
   return (
     <div className="drawer_container">
       <div className="habitlist">
-        <HabitList tasks={tasks} dispatch={dispatch} />
+        <HabitList
+          tasks={tasks}
+          dispatch={dispatch}
+          setRecord={setRecord}
+          record={record}
+        />
       </div>
       <div className="summary">
         <Summary
           dispatch={dispatch}
-          calculatePercentage={calculatePercentage}
           tasks={tasks}
+          setRecord={setRecord}
+          record={record}
         />
       </div>
     </div>

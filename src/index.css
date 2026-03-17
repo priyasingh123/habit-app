@@ -264,3 +264,12 @@
 .habit:hover .delete_icon {
   opacity: 1;
 }
+
+.save_button {
+  margin-top: 5%;
+  border-radius: 5px;
+  background-color: rgb(11, 100, 80);
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}
