@@ -1,4 +1,5 @@
 import { useDayRecordStore } from "../store/useDayRecordStore";
+import { colorTheme } from "../utils/colorTheme";
 
 export const DayHeader = ({ date, setOpenDrawer, setDrawerBody }) => {
   const fetchMonthRecord = useDayRecordStore((state) => state.fetchMonthRecord);
@@ -8,6 +9,7 @@ export const DayHeader = ({ date, setOpenDrawer, setDrawerBody }) => {
     setDrawerBody("monthlyStats");
     setOpenDrawer(true);
   };
+  const { dayHeader } = colorTheme.blue;
   return (
     <>
       <div>
@@ -20,7 +22,7 @@ export const DayHeader = ({ date, setOpenDrawer, setDrawerBody }) => {
           {`${date.toLocaleString("default", { month: "short" })} ${date.getFullYear()}`}
         </div>
       </div>
-      <div className="day-header">
+      <div className="day-header" style={{ "--dayHeader": dayHeader }}>
         {weekdays.map((day, index) => (
           <span key={`${day}-${index}`}>{day}</span>
         ))}

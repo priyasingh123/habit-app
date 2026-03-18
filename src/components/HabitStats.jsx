@@ -1,6 +1,9 @@
 import { useDayRecordStore } from "../store/useDayRecordStore";
+import { colorTheme } from "../utils/colorTheme";
 
 const HabitStats = ({ habit }) => {
+  const { smallCircle, statsContainer, habitBannerHoverShadow } =
+    colorTheme.blue;
   let days = 0;
   const { monthRecord, date } = useDayRecordStore();
   const currentMonth =
@@ -20,7 +23,13 @@ const HabitStats = ({ habit }) => {
   const percentage = (days / daysInMonth) * 100;
 
   return (
-    <div className="stats_container">
+    <div
+      className="stats_container"
+      style={{
+        "--statsContainer": statsContainer,
+        "--habitBannerHoverShadow": habitBannerHoverShadow,
+      }}
+    >
       <p style={{ fontSize: "medium" }}>{habit.title}</p>
       <div
         className="small_progress_ring"
@@ -34,7 +43,12 @@ const HabitStats = ({ habit }) => {
                 : "rgb(75, 192, 192)",
         }}
       >
-        <div className="small_inner_circle">{percentage.toFixed(2)}%</div>
+        <div
+          className="small_inner_circle"
+          style={{ "--smallCircle": smallCircle }}
+        >
+          {percentage.toFixed(2)}%
+        </div>
       </div>
     </div>
   );

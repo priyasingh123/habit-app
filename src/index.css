@@ -27,7 +27,7 @@
 }
 
 .day-header {
-  background-color: rgb(21, 134, 96);
+  background-color: var(--dayHeader); /*dayHeader*/
   margin: 2px;
   font-size: x-large;
 }
@@ -112,15 +112,6 @@
 }
 
 /*Habit List*/
-/* .habit_list_container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-  flex-wrap: wrap;
-  overflow-wrap: anywhere;
-  width: 100%;
-} */
 
 .habit_list_container {
   display: grid;
@@ -138,11 +129,11 @@
   margin: 0.25% 1%;
   display: flex;
   align-items: flex-start;
-  background-color: rgb(11, 124, 86);
+  background-color: var(--habitBanner); /*habitBanner*/
 }
 .habit:hover {
-  background-color: rgb(11, 100, 80);
-  box-shadow: 8px 8px 8px teal;
+  background-color: var(--habitBannerHover); /*habitBannerHover*/
+  box-shadow: 8px 8px 8px var(--habitBannerHoverShadow); /*habitBannerHoverShadow*/
 }
 
 .habit_text {
@@ -160,7 +151,7 @@
   width: fit-content;
   margin: 0 auto;
   border-radius: 4px;
-  background-color: rgb(11, 124, 100);
+  background-color: var(--submitBtn); /*submitBtn*/
   padding: 0.5% 1%;
   cursor: pointer;
 }
@@ -197,7 +188,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: conic-gradient(#4caf50 var(--progress), #e5e5e5 0deg);
+  background: conic-gradient(var(--ringColor) var(--progress), #e5e5e5 0deg);
 
   transition: --progress 1.5s ease;
 }
@@ -214,7 +205,7 @@
 
   font-size: 22px;
   font-weight: bold;
-  color: rgb(11, 124, 100);
+  color: var(--innerCircle); /*innerCircle*/
 }
 
 /* New Button*/
@@ -239,7 +230,7 @@
 }
 
 .new_btn {
-  background-color: rgb(11, 100, 80);
+  background-color: var(--newBtn); /*newBtn*/
   color: azure;
   border-radius: 5px;
   padding: 2px 5px;
@@ -268,7 +259,7 @@
 .save_button {
   margin-top: 5%;
   border-radius: 5px;
-  background-color: rgb(11, 100, 80);
+  background-color: var(--saveBtn); /*saveBtn*/
   color: white;
   padding: 5px 10px;
   cursor: pointer;
@@ -276,7 +267,7 @@
 }
 
 .save_button:disabled {
-  background-color: rgb(150, 170, 165);
+  background-color: var(--saveBtnDisabled); /*saveBtnDisabled*/
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -299,8 +290,8 @@
   justify-content: space-around;
   border-radius: 5px;
   align-items: center;
-  background-color: rgba(14, 95, 3, 0.563);
-  box-shadow: 2px 2px 5px teal;
+  background-color: var(--statsContainer); /*statsContainer*/
+  box-shadow: 2px 2px 5px var(--habitBannerHoverShadow); /*habitBannerHoverShadow*/
   padding: 0.25% 1%;
 }
 
@@ -334,7 +325,7 @@
 
   font-size: 15px;
   font-weight: bold;
-  color: rgb(11, 124, 100);
+  color: var(--smallCircle); /*smallCircle*/
 }
 
 .monthHeader {

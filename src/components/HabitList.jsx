@@ -5,8 +5,16 @@ import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
 import { toaster } from "./toaster";
+import { colorTheme } from "../utils/colorTheme";
 
 const HabitList = ({ record, setRecord }) => {
+  const {
+    habitBanner,
+    habitBannerHover,
+    habitBannerHoverShadow,
+    saveBtn,
+    saveBtnDisabled,
+  } = colorTheme.blue;
   const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
   const deleteHabit = useHabitStore((state) => state.deleteHabit);
@@ -76,7 +84,15 @@ const HabitList = ({ record, setRecord }) => {
           .filter((habit) => !habit.isArchived)
           .map((habit, index) => {
             return (
-              <div className="habit" key={`${index}`}>
+              <div
+                className="habit"
+                key={`${index}`}
+                style={{
+                  "--habitBanner": habitBanner,
+                  "--habitBannerHover": habitBannerHover,
+                  "--habitBannerHoverShadow": habitBannerHoverShadow,
+                }}
+              >
                 <CircleX
                   className="delete_icon"
                   size={22}
@@ -95,6 +111,7 @@ const HabitList = ({ record, setRecord }) => {
       </div>
       <button
         className="save_button"
+        style={{ "--saveBtn": saveBtn, "--saveBtnDisabled": saveBtnDisabled }}
         onClick={() => handleSaveChanges()}
         disabled={isSaveBtnDisabled()}
       >

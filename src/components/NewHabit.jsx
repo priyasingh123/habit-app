@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useHabitStore } from "../store/useHabitStore";
+import { colorTheme } from "../utils/colorTheme";
 
 const NewHabit = () => {
+  const { newBtn } = colorTheme.blue;
   const [newHabitVal, setNewHabitVal] = useState("");
   const createHabit = useHabitStore((state) => state.createHabit);
   const handleAdd = () => {
@@ -19,7 +21,11 @@ const NewHabit = () => {
         placeholder="Add New Habit"
         onChange={(e) => setNewHabitVal(e.target.value)}
       />
-      <button className="new_btn" onClick={handleAdd}>
+      <button
+        className="new_btn"
+        onClick={handleAdd}
+        style={{ "--newBtn": newBtn }}
+      >
         Add
       </button>
     </div>

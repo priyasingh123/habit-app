@@ -1,7 +1,9 @@
 import { Drawer } from "@chakra-ui/react";
 import DrawerContent from "../components/DrawerContent";
+import { colorTheme } from "../utils/colorTheme";
 
 export const HabitDrawer = ({ openDrawer, setOpenDrawer, drawerBody }) => {
+  const { drawer_bg } = colorTheme.blue;
   return (
     <>
       <Drawer.Root
@@ -15,7 +17,7 @@ export const HabitDrawer = ({ openDrawer, setOpenDrawer, drawerBody }) => {
           <Drawer.Content
             h="75vh"
             borderTopRadius="2xl"
-            bg="rgb(51, 164, 106)"
+            bg={drawer_bg}
             color="white"
           >
             <Drawer.CloseTrigger />

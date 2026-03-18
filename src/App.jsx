@@ -95,10 +95,11 @@ function App() {
         </div>
         <div className="color-theme">
           <button
+            id="color-pallete"
             className="color-pallete"
             onClick={() => setShowPalette(!showPalette)}
           ></button>
-          <span>Theme</span>
+          <label htmlFor="color-pallete">Theme</label>
           {showPalette && <ColorPopUp setShowPalette={setShowPalette} />}
         </div>
         <button className="arrow-btn left" onClick={handleRightClick}></button>
