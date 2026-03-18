@@ -1,9 +1,11 @@
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { useHabitStore } from "../store/useHabitStore";
-import { colorTheme } from "../utils/colorTheme";
+import { colorTheme as theme } from "../utils/colorTheme";
+import { useColorStore } from "../store/useColorStore";
 
 const Loader = () => {
-  const { innerCircle } = colorTheme.blue;
+  const colorTheme = useColorStore((state) => state.colorTheme);
+  const { innerCircle } = theme[colorTheme];
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
   const habits = useHabitStore((state) => state.habits);
   const updatedDayRecord = dayRecord.filter((record) => {

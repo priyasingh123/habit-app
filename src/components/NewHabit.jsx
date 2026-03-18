@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useHabitStore } from "../store/useHabitStore";
-import { colorTheme } from "../utils/colorTheme";
+import { colorTheme as theme } from "../utils/colorTheme";
+import { useColorStore } from "../store/useColorStore";
 
 const NewHabit = () => {
-  const { newBtn } = colorTheme.blue;
+  const colorTheme = useColorStore((state) => state.colorTheme);
+  const { newBtn } = theme[colorTheme];
   const [newHabitVal, setNewHabitVal] = useState("");
   const createHabit = useHabitStore((state) => state.createHabit);
   const handleAdd = () => {

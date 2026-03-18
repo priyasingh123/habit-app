@@ -5,16 +5,18 @@ import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
 import { toaster } from "./toaster";
-import { colorTheme } from "../utils/colorTheme";
+import { colorTheme as theme } from "../utils/colorTheme";
+import { useColorStore } from "../store/useColorStore";
 
 const HabitList = ({ record, setRecord }) => {
+  const colorTheme = useColorStore((state) => state.colorTheme);
   const {
     habitBanner,
     habitBannerHover,
     habitBannerHoverShadow,
     saveBtn,
     saveBtnDisabled,
-  } = colorTheme.blue;
+  } = theme[colorTheme];
   const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
   const deleteHabit = useHabitStore((state) => state.deleteHabit);

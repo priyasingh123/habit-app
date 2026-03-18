@@ -41,4 +41,18 @@ export const colorTheme = {
     statsContainer: "rgba(10, 50, 120, 0.56)",
     smallCircle: "rgb(11, 85, 155)",
   },
+  yellow: {
+    dayHeader: "rgb(170, 140, 21)",
+    habitBanner: "rgb(155, 125, 11)",
+    habitBannerHover: "rgb(135, 110, 11)",
+    habitBannerHoverShadow: "rgb(160, 120, 0)",
+    drawer_bg: "rgb(180, 150, 51)",
+    submitBtn: "rgb(155, 135, 11)",
+    innerCircle: "rgb(155, 135, 11)",
+    newBtn: "rgb(135, 110, 11)",
+    saveBtn: "rgb(135, 110, 11)",
+    saveBtnDisabled: "rgb(175, 170, 150)",
+    statsContainer: "rgba(120, 100, 10, 0.56)",
+    smallCircle: "rgb(155, 135, 11)",
+  },
 };

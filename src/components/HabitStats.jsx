@@ -1,9 +1,11 @@
 import { useDayRecordStore } from "../store/useDayRecordStore";
-import { colorTheme } from "../utils/colorTheme";
+import { colorTheme as theme } from "../utils/colorTheme";
+import { useColorStore } from "../store/useColorStore";
 
 const HabitStats = ({ habit }) => {
+  const colorTheme = useColorStore((state) => state.colorTheme);
   const { smallCircle, statsContainer, habitBannerHoverShadow } =
-    colorTheme.blue;
+    theme[colorTheme];
   let days = 0;
   const { monthRecord, date } = useDayRecordStore();
   const currentMonth =

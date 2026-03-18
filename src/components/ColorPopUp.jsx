@@ -1,9 +1,17 @@
+import { useColorStore } from "../store/useColorStore";
+
 const ColorPopUp = ({ setShowPalette }) => {
+  const setColorTheme = useColorStore((state) => state.setColorTheme);
   const colorsOptions = [
-    { name: "Red", value: "#f44336" },
-    { name: "Blue", value: "#2196f3" },
-    { name: "Green", value: "#4caf50" },
+    { name: "red", value: "rgb(134, 21, 96)" },
+    { name: "blue", value: "rgb(21, 85, 170)" },
+    { name: "green", value: "rgb(21, 134, 96)" },
+    { name: "yellow", value: "rgb(255, 255, 0)" },
   ];
+  const handleClick = (color) => {
+    setColorTheme(color);
+    setShowPalette(false);
+  };
   return (
     <div className="color_container">
       {colorsOptions.map((color) => (
@@ -11,7 +19,7 @@ const ColorPopUp = ({ setShowPalette }) => {
           key={color.value}
           className="color_option"
           style={{ backgroundColor: color.value }}
-          onClick={() => setShowPalette(false)}
+          onClick={() => handleClick(color.name)}
         ></div>
       ))}
     </div>
