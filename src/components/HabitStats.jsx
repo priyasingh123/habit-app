@@ -13,7 +13,6 @@ const HabitStats = ({ habit }) => {
       : new Date(date).getFullYear();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   for (const dayRecord of monthRecord) {
-    console.log(dayRecord.completed, habit._id);
     if (dayRecord.completed.includes(habit._id)) {
       days += 1;
     }
