@@ -6,6 +6,7 @@ import { Provider } from "./components/Provider";
 import { useHabitStore } from "./store/useHabitStore";
 import { Toaster, Toast } from "@chakra-ui/react";
 import { toaster } from "./components/toaster";
+import ColorPopUp from "./components/ColorPopUp";
 
 function App() {
   const firstFetchedRef = useRef(false);
@@ -14,6 +15,7 @@ function App() {
   const [thisMonth, setThisMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );
+  const [showPalette, setShowPalette] = useState(false);
   const fetchHabits = useHabitStore((state) => state.fetchHabits);
 
   useEffect(() => {
@@ -90,6 +92,14 @@ function App() {
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
           />
+        </div>
+        <div className="color-theme">
+          <button
+            className="color-pallete"
+            onClick={() => setShowPalette(!showPalette)}
+          ></button>
+          <span>Theme</span>
+          {showPalette && <ColorPopUp setShowPalette={setShowPalette} />}
         </div>
         <button className="arrow-btn left" onClick={handleRightClick}></button>
       </div>

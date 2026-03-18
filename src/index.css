@@ -358,4 +358,44 @@
 .color-theme {
   position: absolute;
   right: 7%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.color_option {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.color-pallete {
+  border: 1px solid white;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    45deg,
+    #4caf50,
+    #2196f3,
+    #ff9800,
+    #e91e63,
+    #9c27b0
+  );
+}
+
+.color_container {
+  width: 150px;
+  height: 50px;
+  background-color: #242424;
+  position: absolute;
+  border: solid 1px white;
+  right: 0.5%;
+  border-radius: 10px;
+  top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
 }
