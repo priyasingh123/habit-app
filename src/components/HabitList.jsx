@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { CheckSquare, Square, CircleX } from "lucide-react";
+import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
@@ -19,7 +19,7 @@ const HabitList = ({ record, setRecord }) => {
   } = theme[colorTheme];
   const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
-  const deleteHabit = useHabitStore((state) => state.deleteHabit);
+  const updateHabit = useHabitStore((state) => state.updateHabit);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
@@ -52,6 +52,7 @@ const HabitList = ({ record, setRecord }) => {
         toaster.create({
           title: "Saved successfully",
           type: "success",
+          closable: true,
         });
       })
       .catch((error) => {
@@ -98,9 +99,25 @@ const HabitList = ({ record, setRecord }) => {
                 <CircleX
                   className="delete_icon"
                   size={22}
-                  onClick={() => deleteHabit(habit._id)}
+                  onClick={() => updateHabit(habit._id, { isArchived: true })}
                 />
-                <p className="habit_text">{habit.title}</p>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <p className="habit_text">{habit.title}</p>
+                  <Pencil
+                    className="edit_icon"
+                    size={18}
+                    onClick={() => {
+                      toaster.create({
+                        title: "Feature coming soon!",
+                        type: "info",
+                        duration: 4000,
+                        closable: true,
+                      });
+                    }}
+                  />
+                </div>
                 <div className="check_icon">
                   <Icon
                     as={!record.includes(habit._id) ? Square : CheckSquare}

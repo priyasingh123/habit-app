@@ -63,6 +63,7 @@ function App() {
         {(toast) => (
           <Toast.Root maxWidth="360px" mx="auto">
             <Toast.Title>{toast.title}</Toast.Title>
+            <Toast.CloseTrigger mt="10px" />
           </Toast.Root>
         )}
       </Toaster>

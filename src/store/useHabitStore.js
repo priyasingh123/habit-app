@@ -2,7 +2,7 @@ import { create } from "zustand";
 import {
   createHabit,
   getAllHabits,
-  deleteHabit,
+  updateHabit,
 } from "../services/habitService";
 
 export const useHabitStore = create((set) => ({
@@ -20,9 +20,9 @@ export const useHabitStore = create((set) => ({
     set({ habits, loading: false });
   },
 
-  deleteHabit: async (habitId) => {
+  updateHabit: async (habitId, updatedData) => {
     set({ loading: true });
-    const habits = await deleteHabit(habitId);
+    const habits = await updateHabit(habitId, updatedData);
     set({ habits, loading: false });
   },
 }));

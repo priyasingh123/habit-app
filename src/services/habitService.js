@@ -11,8 +11,9 @@ export function createHabit(habitTitle) {
   });
 }
 
-export function deleteHabit(habitId) {
+export function updateHabit(habitId, updatedData) {
   return apiRequest(`/habits/${habitId}`, {
     method: "PATCH",
+    body: JSON.stringify(updatedData),
   });
 }
