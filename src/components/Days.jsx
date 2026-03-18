@@ -1,13 +1,26 @@
 import { CustomDate } from "./Date";
 
-export const Days = ({ startDay, lastDay, today, setOpenDrawer, date }) => {
+export const Days = ({
+  startDay,
+  lastDay,
+  today,
+  setOpenDrawer,
+  date,
+  setDrawerBody,
+}) => {
   const totalCells = startDay + lastDay;
 
   return (
     <div className="month-days">
       {Array.from({ length: totalCells }).map((_, index) => {
         if (index < startDay) {
-          return <CustomDate key={index} setOpenDrawer={setOpenDrawer} />;
+          return (
+            <CustomDate
+              key={index}
+              setOpenDrawer={setOpenDrawer}
+              setDrawerBody={setDrawerBody}
+            />
+          );
         }
 
         const dayNumber = index - startDay + 1;
@@ -18,6 +31,7 @@ export const Days = ({ startDay, lastDay, today, setOpenDrawer, date }) => {
             dayNumber={dayNumber}
             today={today}
             setOpenDrawer={setOpenDrawer}
+            setDrawerBody={setDrawerBody}
           />
         );
       })}

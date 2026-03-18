@@ -1,6 +1,12 @@
 import { useDayRecordStore } from "../store/useDayRecordStore";
 
-export const CustomDate = ({ dayNumber, today, setOpenDrawer, date }) => {
+export const CustomDate = ({
+  dayNumber,
+  today,
+  setOpenDrawer,
+  date,
+  setDrawerBody,
+}) => {
   const setDate = useDayRecordStore((state) => state.setDate);
   const handleClick = () => {
     const thisDate = new Date(
@@ -9,6 +15,7 @@ export const CustomDate = ({ dayNumber, today, setOpenDrawer, date }) => {
       dayNumber + 1,
     );
     setDate(thisDate.toISOString().split("T")[0]);
+    setDrawerBody("dailyStats");
     setOpenDrawer(true);
   };
   if (dayNumber && dayNumber === today) {

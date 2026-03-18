@@ -10,6 +10,7 @@ import { toaster } from "./components/toaster";
 function App() {
   const firstFetchedRef = useRef(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [drawerBody, setDrawerBody] = useState("dailyStats");
   const [thisMonth, setThisMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );
@@ -70,6 +71,7 @@ function App() {
             date={lastMonth}
             today={isSameMonth(lastMonth)}
             setOpenDrawer={setOpenDrawer}
+            setDrawerBody={setDrawerBody}
           />
         </div>
 
@@ -78,6 +80,7 @@ function App() {
             date={thisMonth}
             today={isSameMonth(thisMonth)}
             setOpenDrawer={setOpenDrawer}
+            setDrawerBody={setDrawerBody}
           />
         </div>
         <div className="month next">
@@ -85,11 +88,16 @@ function App() {
             date={nextMonth}
             today={isSameMonth(nextMonth)}
             setOpenDrawer={setOpenDrawer}
+            setDrawerBody={setDrawerBody}
           />
         </div>
         <button className="arrow-btn left" onClick={handleRightClick}></button>
       </div>
-      <HabitDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+      <HabitDrawer
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+        drawerBody={drawerBody}
+      />
     </Provider>
   );
 }

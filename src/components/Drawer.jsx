@@ -1,7 +1,7 @@
 import { Drawer } from "@chakra-ui/react";
 import DrawerContent from "../components/DrawerContent";
 
-export const HabitDrawer = ({ openDrawer, setOpenDrawer }) => {
+export const HabitDrawer = ({ openDrawer, setOpenDrawer, drawerBody }) => {
   return (
     <>
       <Drawer.Root
@@ -20,7 +20,7 @@ export const HabitDrawer = ({ openDrawer, setOpenDrawer }) => {
           >
             <Drawer.CloseTrigger />
             <Drawer.Body>
-              <DrawerContent />
+              <DrawerContent drawerBody={drawerBody} />
             </Drawer.Body>
           </Drawer.Content>
         </Drawer.Positioner>
