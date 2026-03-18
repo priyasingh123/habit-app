@@ -26,6 +26,12 @@ const HabitStats = ({ habit }) => {
         className="small_progress_ring"
         style={{
           "--progress": percentage * 3.6 + "deg",
+          "--ringColor":
+            percentage <= 30
+              ? "rgb(255, 99, 132)"
+              : percentage <= 60
+                ? "rgb(255, 205, 86)"
+                : "rgb(75, 192, 192)",
         }}
       >
         <div className="small_inner_circle">{percentage.toFixed(2)}%</div>

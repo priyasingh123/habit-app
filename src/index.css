@@ -317,7 +317,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: conic-gradient(#4caf50 var(--progress), #e5e5e5 0deg);
+  background: conic-gradient(var(--ringColor) var(--progress), #e5e5e5 0deg);
 
   transition: --progress 1.5s ease;
 }
@@ -352,4 +352,10 @@
 
 .stats_container > p {
   flex: 1;
+}
+
+/*Color Theme*/
+.color-theme {
+  position: absolute;
+  right: 7%;
 }
