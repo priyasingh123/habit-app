@@ -1,25 +1,17 @@
-import { Icon } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
 import { toaster } from "./toaster";
 import { colorTheme as theme } from "../utils/colorTheme";
 import { useColorStore } from "../store/useColorStore";
+import Habit from "./Habit";
 
 const HabitList = ({ record, setRecord }) => {
   const colorTheme = useColorStore((state) => state.colorTheme);
-  const {
-    habitBanner,
-    habitBannerHover,
-    habitBannerHoverShadow,
-    saveBtn,
-    saveBtnDisabled,
-  } = theme[colorTheme];
+  const { saveBtn, saveBtnDisabled } = theme[colorTheme];
   const firstRef = useRef(false);
   const habits = useHabitStore((state) => state.habits);
-  const updateHabit = useHabitStore((state) => state.updateHabit);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
@@ -33,14 +25,6 @@ const HabitList = ({ record, setRecord }) => {
     };
     fetchRecord();
   }, [fetchDayRecord]);
-
-  const handleHabitComplete = (id) => {
-    if (record.includes(id)) {
-      setRecord((prev) => prev.filter((habitId) => habitId !== id));
-    } else {
-      setRecord((prev) => [...prev, id]);
-    }
-  };
 
   const isSaveBtnDisabled = () => {
     return isSame(record, dayRecord);
@@ -87,44 +71,12 @@ const HabitList = ({ record, setRecord }) => {
           .filter((habit) => !habit.isArchived)
           .map((habit, index) => {
             return (
-              <div
-                className="habit"
-                key={`${index}`}
-                style={{
-                  "--habitBanner": habitBanner,
-                  "--habitBannerHover": habitBannerHover,
-                  "--habitBannerHoverShadow": habitBannerHoverShadow,
-                }}
-              >
-                <CircleX
-                  className="delete_icon"
-                  size={22}
-                  onClick={() => updateHabit(habit._id, { isArchived: true })}
-                />
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
-                >
-                  <p className="habit_text">{habit.title}</p>
-                  <Pencil
-                    className="edit_icon"
-                    size={18}
-                    onClick={() => {
-                      toaster.create({
-                        title: "Feature coming soon!",
-                        type: "info",
-                        duration: 4000,
-                        closable: true,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="check_icon">
-                  <Icon
-                    as={!record.includes(habit._id) ? Square : CheckSquare}
-                    onClick={() => handleHabitComplete(habit._id)}
-                  />
-                </div>
-              </div>
+              <Habit
+                setRecord={setRecord}
+                record={record}
+                habit={habit}
+                key={`${index}-${habit._id}`}
+              />
             );
           })}
       </div>
