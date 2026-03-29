@@ -64,7 +64,12 @@ const HabitList = ({ record, setRecord }) => {
       }}
     >
       <header className="summary_title">
-        Date: {new Date(date).toLocaleDateString()}
+        Date:{" "}
+        {new Date(date).toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
       </header>
       <div className="habit_list_container">
         {habits

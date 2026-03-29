@@ -1,5 +1,6 @@
 export async function apiRequest(endpoint, options = {}) {
-  const BASE_URL = "http://localhost:5000";
+  //const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://habit-app-backend-d74e.onrender.com";
 
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
