@@ -15,14 +15,14 @@ export const CustomDate = ({
   date,
   setDrawerBody,
 }: CustomDateProps) => {
-  const setDate = useDayRecordStore((state) => state.setDate);
+  const setDate = useDayRecordStore((state) => state.setStoreDate);
   const handleClick = () => {
     const thisDate = new Date(
       date.getFullYear(),
       date.getMonth(),
       dayNumber + 1,
     );
-    setDate(thisDate.toISOString().split("T")[0]);
+    setDate(thisDate.toLocaleDateString("en-CA"));
     setDrawerBody("dailyStats");
     setOpenDrawer(true);
   };
