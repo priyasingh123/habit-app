@@ -29,7 +29,7 @@ export const Days = ({
             key={index}
             date={date}
             dayNumber={dayNumber}
-            today={today}
+            todaysDate={today}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
           />

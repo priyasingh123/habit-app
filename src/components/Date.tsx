@@ -1,15 +1,16 @@
 import { useDayRecordStore } from "../store/useDayRecordStore.js";
+import type { Dispatch, SetStateAction } from "react";
 
 type CustomDateProps = {
   dayNumber: number;
-  today: Date;
-  setOpenDrawer: (open: boolean) => void;
+  todaysDate: number;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
   date: Date;
-  setDrawerBody: (body: string) => void;
+  setDrawerBody: Dispatch<SetStateAction<"dailyStats" | "monthlyStats">>;
 };
 export const CustomDate = ({
   dayNumber,
-  today,
+  todaysDate,
   setOpenDrawer,
   date,
   setDrawerBody,
@@ -25,21 +26,14 @@ export const CustomDate = ({
     setDrawerBody("dailyStats");
     setOpenDrawer(true);
   };
-  if (dayNumber && dayNumber === today.getDate()) {
-    return (
-      <span
-        className="today"
-        style={{ cursor: "pointer" }}
-        onClick={handleClick}
-      >
-        {dayNumber}
-      </span>
-    );
-  } else {
-    return (
-      <span onClick={handleClick} style={{ cursor: "pointer" }}>
-        {dayNumber}
-      </span>
-    );
-  }
+
+  return (
+    <span
+      className={dayNumber && dayNumber === todaysDate ? "today" : ""}
+      style={{ cursor: "pointer" }}
+      onClick={handleClick}
+    >
+      {dayNumber}
+    </span>
+  );
 };
