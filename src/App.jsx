@@ -1,12 +1,18 @@
 import "./App.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { Month } from "./components/Month";
-import { HabitDrawer } from "./components/Drawer";
 import { Provider } from "./components/Provider";
 import { useHabitStore } from "./store/useHabitStore";
 import { Toaster, Toast } from "@chakra-ui/react";
 import { toaster } from "./components/toaster";
-import ColorPopUp from "./components/ColorPopUp";
+
+const ColorPopUp = lazy(() => import("./components/ColorPopUp"));
+
+const HabitDrawer = lazy(() =>
+  import("./components/Drawer").then((module) => ({
+    default: module.HabitDrawer,
+  })),
+);
 
 function App() {
   const firstFetchedRef = useRef(false);
@@ -103,15 +109,21 @@ function App() {
             onClick={() => setShowPalette(!showPalette)}
           ></button>
           <label htmlFor="color-pallete">Theme</label>
-          {showPalette && <ColorPopUp setShowPalette={setShowPalette} />}
+          {showPalette && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <ColorPopUp setShowPalette={setShowPalette} />
+            </Suspense>
+          )}
         </div>
         <button className="arrow-btn left" onClick={handleRightClick}></button>
       </div>
-      <HabitDrawer
-        openDrawer={openDrawer}
-        setOpenDrawer={setOpenDrawer}
-        drawerBody={drawerBody}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <HabitDrawer
+          openDrawer={openDrawer}
+          setOpenDrawer={setOpenDrawer}
+          drawerBody={drawerBody}
+        />
+      </Suspense>
     </Provider>
   );
 }
