@@ -27,9 +27,7 @@ function App() {
   useEffect(() => {
     if (firstFetchedRef.current) return;
     firstFetchedRef.current = true;
-    if (navigator.onLine) {
-      fetchHabits();
-    }
+    fetchHabits();
   }, []);
   const handleLeftClick = () => {
     setThisMonth(
