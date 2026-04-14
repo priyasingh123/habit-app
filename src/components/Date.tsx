@@ -17,11 +17,7 @@ export const CustomDate = ({
 }: CustomDateProps) => {
   const setDate = useDayRecordStore((state) => state.setStoreDate);
   const handleClick = () => {
-    const thisDate = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      dayNumber + 1,
-    );
+    const thisDate = new Date(date.getFullYear(), date.getMonth(), dayNumber);
     setDate(thisDate.toLocaleDateString("en-CA"));
     setDrawerBody("dailyStats");
     setOpenDrawer(true);
