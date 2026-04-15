@@ -1,7 +1,8 @@
 import { DayHeader } from "./DayHeader";
 import { Days } from "./Days";
 
-export const Month = ({ date, today, setOpenDrawer, setDrawerBody }) => {
+  ({ date, today, setOpenDrawer, setDrawerBody, setMonthYear }, 
+    ref) => {
   const startDay = date.getDay();
   const lastDay = new Date(
     date.getFullYear(),
@@ -15,6 +16,7 @@ export const Month = ({ date, today, setOpenDrawer, setDrawerBody }) => {
         date={date}
         setOpenDrawer={setOpenDrawer}
         setDrawerBody={setDrawerBody}
+          setMonthYear={setMonthYear}
       />
       <Days
         startDay={startDay}

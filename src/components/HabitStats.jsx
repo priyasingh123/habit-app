@@ -1,29 +1,12 @@
-import { useDayRecordStore } from "../store/useDayRecordStore";
 import { colorTheme as theme } from "../utils/colorTheme";
 import { useColorStore } from "../store/useColorStore";
+import React from "react";
 
-const HabitStats = ({ habit }) => {
+const HabitStats = ({ habit, completedDays, daysInMonth }) => {
   const colorTheme = useColorStore((state) => state.colorTheme);
   const { smallCircle, statsContainer, habitBannerHoverShadow } =
     theme[colorTheme];
-  let days = 0;
-  const { monthRecord, date } = useDayRecordStore();
-  const currentMonth =
-    monthRecord.length > 0
-      ? new Date(monthRecord[0].date).getMonth()
-      : new Date(date).getMonth();
-  const currentYear =
-    monthRecord.length > 0
-      ? new Date(monthRecord[0].date).getFullYear()
-      : new Date(date).getFullYear();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  for (const dayRecord of monthRecord) {
-    if (dayRecord.completed.includes(habit._id)) {
-      days += 1;
-    }
-  }
-  const percentage = (days / daysInMonth) * 100;
-
+  const percentage = (completedDays / daysInMonth) * 100;
   return (
     <div
       className="stats_container"
@@ -56,4 +39,4 @@ const HabitStats = ({ habit }) => {
   );
 };
 
-export default HabitStats;
+export default React.memo(HabitStats);

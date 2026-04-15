@@ -1,15 +1,19 @@
-import { useDayRecordStore } from "../store/useDayRecordStore";
 import { colorTheme as theme } from "../utils/colorTheme";
 import { useColorStore } from "../store/useColorStore";
 
-export const DayHeader = ({ date, setOpenDrawer, setDrawerBody }) => {
-  const fetchMonthRecord = useDayRecordStore((state) => state.fetchMonthRecord);
+export const DayHeader = ({
+  date,
+  setOpenDrawer,
+  setDrawerBody,
+  setMonthYear,
+}) => {
   const colorTheme = useColorStore((state) => state.colorTheme);
   const weekdays = ["S", "M", "T", "W", "T", "F", "S"];
   const handleMonthClick = async (year, month) => {
-    await fetchMonthRecord(year, month);
+    // ref.current = performance.now();
     setDrawerBody("monthlyStats");
     setOpenDrawer(true);
+    setMonthYear({ month, year });
   };
   const { dayHeader } = theme[colorTheme];
   return (

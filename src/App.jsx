@@ -16,6 +16,11 @@ const HabitDrawer = lazy(() =>
 
 function App() {
   const firstFetchedRef = useRef(false);
+  const clickStartRef = useRef(0);
+  const [monthYear, setMonthYear] = useState({
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+  });
   const [openDrawer, setOpenDrawer] = useState(false);
   const [drawerBody, setDrawerBody] = useState("dailyStats");
   const [thisMonth, setThisMonth] = useState(

@@ -3,7 +3,7 @@ import Summary from "./Summary";
 import { useState } from "react";
 import MonthlyStats from "./MonthlyStats";
 
-const DrawerContent = ({ drawerBody }) => {
+const DrawerContent = ({ drawerBody, monthYear }) => {
   const [record, setRecord] = useState([]);
 
   return (
@@ -18,7 +18,7 @@ const DrawerContent = ({ drawerBody }) => {
           </div>
         </>
       ) : (
-        <MonthlyStats />
+        <MonthlyStats monthYear={monthYear} />
       )}
     </div>
   );

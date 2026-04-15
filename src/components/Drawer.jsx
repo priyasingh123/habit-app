@@ -3,7 +3,7 @@ import DrawerContent from "../components/DrawerContent";
 import { colorTheme as theme } from "../utils/colorTheme";
 import { useColorStore } from "../store/useColorStore";
 
-export const HabitDrawer = ({ openDrawer, setOpenDrawer, drawerBody }) => {
+  ({ openDrawer, setOpenDrawer, drawerBody, monthYear }, 
   const colorTheme = useColorStore((state) => state.colorTheme);
   const { drawer_bg } = theme[colorTheme];
   return (
@@ -24,7 +24,7 @@ export const HabitDrawer = ({ openDrawer, setOpenDrawer, drawerBody }) => {
           >
             <Drawer.CloseTrigger />
             <Drawer.Body>
-              <DrawerContent drawerBody={drawerBody} />
+                <DrawerContent drawerBody={drawerBody} monthYear={monthYear} />
             </Drawer.Body>
           </Drawer.Content>
         </Drawer.Positioner>
