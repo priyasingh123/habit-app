@@ -69,37 +69,6 @@
   color: black;
 }
 
-@media (max-width: 700px) {
-  .month.prev,
-  .month.next {
-    display: none;
-  }
-}
-
-@media (max-width: 500px) {
-  .arrow-btn.right {
-    background-color: transparent;
-    align-self: center;
-    border: none;
-    border-top: 16px solid transparent;
-    border-bottom: 16px solid transparent;
-    cursor: pointer;
-    border-right: 17px solid white;
-    margin-right: 5px;
-  }
-
-  .arrow-btn.left {
-    background-color: transparent;
-    align-self: center;
-    border: none;
-    border-top: 16px solid transparent;
-    border-bottom: 16px solid transparent;
-    cursor: pointer;
-    border-left: 17px solid white;
-    margin-left: 5px;
-  }
-}
-
 .drawer_container {
   display: flex;
   width: 100%;
@@ -192,7 +161,7 @@
   align-items: center;
   background: conic-gradient(var(--ringColor) var(--progress), #e5e5e5 0deg);
 
-  transition: --progress 1.5s ease;
+  transition: --progress 1s ease;
 }
 
 .inner_circle {
@@ -307,7 +276,7 @@
   align-items: center;
   background: conic-gradient(var(--ringColor) var(--progress), #e5e5e5 0deg);
 
-  transition: --progress 1.5s ease;
+  transition: --progress 1s ease;
 }
 
 .small_inner_circle {
@@ -396,4 +365,60 @@
   padding: 2px;
   padding-left: 5px;
   width: 100%;
+}
+
+@media (max-width: 700px) {
+  .month.prev,
+  .month.next {
+    display: none;
+  }
+  .stats_container {
+    width: 95%;
+  }
+
+  .drawer_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  .habitlist {
+    flex: 1;
+  }
+
+  .summary {
+    flex: 1;
+  }
+
+  .habit_list_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .arrow-btn.right {
+    background-color: transparent;
+    align-self: center;
+    border: none;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    cursor: pointer;
+    border-right: 17px solid white;
+    margin-right: 5px;
+  }
+
+  .arrow-btn.left {
+    background-color: transparent;
+    align-self: center;
+    border: none;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    cursor: pointer;
+    border-left: 17px solid white;
+    margin-left: 5px;
+  }
 }
