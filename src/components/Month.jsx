@@ -1,31 +1,35 @@
+import { forwardRef } from "react";
 import { DayHeader } from "./DayHeader";
 import { Days } from "./Days";
 
-  ({ date, today, setOpenDrawer, setDrawerBody, setMonthYear }, 
-    ref) => {
-  const startDay = date.getDay();
-  const lastDay = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0,
-  ).getDate();
+export const Month = forwardRef(
+  ({ date, today, setOpenDrawer, setDrawerBody, setMonthYear }, ref) => {
+    const startDay = date.getDay();
+    const lastDay = new Date(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      0,
+    ).getDate();
 
-  return (
-    <div className="calender">
-      <DayHeader
-        date={date}
-        setOpenDrawer={setOpenDrawer}
-        setDrawerBody={setDrawerBody}
+    return (
+      <div className="calender">
+        <DayHeader
+          date={date}
+          setOpenDrawer={setOpenDrawer}
+          setDrawerBody={setDrawerBody}
+          ref={ref}
           setMonthYear={setMonthYear}
-      />
-      <Days
-        startDay={startDay}
-        lastDay={lastDay}
-        today={today}
-        date={date}
-        setOpenDrawer={setOpenDrawer}
-        setDrawerBody={setDrawerBody}
-      />
-    </div>
-  );
-};
+        />
+        <Days
+          startDay={startDay}
+          lastDay={lastDay}
+          today={today}
+          date={date}
+          setOpenDrawer={setOpenDrawer}
+          setDrawerBody={setDrawerBody}
+          ref={ref}
+        />
+      </div>
+    );
+  },
+);

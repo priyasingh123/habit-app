@@ -86,6 +86,8 @@ function App() {
             today={isSameMonth(lastMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
+            ref={clickStartRef}
+            setMonthYear={setMonthYear}
           />
         </div>
 
@@ -95,6 +97,8 @@ function App() {
             today={isSameMonth(thisMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
+            ref={clickStartRef}
+            setMonthYear={setMonthYear}
           />
         </div>
         <div className="month next">
@@ -103,6 +107,8 @@ function App() {
             today={isSameMonth(nextMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
+            ref={clickStartRef}
+            setMonthYear={setMonthYear}
           />
         </div>
         <div className="color-theme">
@@ -125,6 +131,8 @@ function App() {
           openDrawer={openDrawer}
           setOpenDrawer={setOpenDrawer}
           drawerBody={drawerBody}
+          ref={clickStartRef}
+          monthYear={monthYear}
         />
       </Suspense>
     </Provider>
