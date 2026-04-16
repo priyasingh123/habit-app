@@ -1,10 +1,21 @@
+import { AISupport } from "./AISupport";
 import Loader from "./Loader";
 import NewHabit from "./NewHabit";
 
 const Summary = () => {
   return (
     <div>
-      <header className="summary_title">Summary</header>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <header className="summary_title" style={{ flex: 3 }}>
+          Summary
+        </header>
+        <AISupport style={{ flex: 1 }} onClick={() => {}} />
+      </div>
+
       <Loader />
       <NewHabit />
     </div>

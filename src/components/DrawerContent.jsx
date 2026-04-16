@@ -2,6 +2,7 @@ import HabitList from "./HabitList";
 import Summary from "./Summary";
 import { useState } from "react";
 import MonthlyStats from "./MonthlyStats";
+import { AISupport } from "./AISupport";
 
 const DrawerContent = ({ drawerBody, monthYear }) => {
   const [record, setRecord] = useState([]);

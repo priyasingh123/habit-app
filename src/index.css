@@ -81,6 +81,7 @@
 
 .summary {
   flex: 1;
+  flex-direction: row;
 }
 
 /*Habit List*/
@@ -421,4 +422,44 @@
     border-left: 17px solid white;
     margin-left: 5px;
   }
+}
+
+.ai_fab {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+
+  width: 72px;
+  height: 72px;
+  border: none;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: white;
+  background: linear-gradient(135deg, #8ff7c8, #2ec27e);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25),
+    0 0 18px rgba(143, 247, 200, 0.55);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+.ai_fab:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(143, 247, 200, 0.75);
+}
+
+.ai_fab:active {
+  transform: scale(0.96);
 }
