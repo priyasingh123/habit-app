@@ -12,6 +12,7 @@ export const colorTheme = {
     saveBtnDisabled: "rgb(170, 150, 165)",
     statsContainer: "rgba(95, 14, 3, 0.563)",
     smallCircle: "rgb(124, 11, 100)",
+    modal_background: "rgb(255,200,200)",
   },
   green: {
     dayHeader: "rgb(21, 134, 96)",
@@ -26,6 +27,7 @@ export const colorTheme = {
     saveBtnDisabled: "rgb(150, 170, 165)",
     statsContainer: "rgba(14, 95, 3, 0.563)",
     smallCircle: "rgb(11, 124, 100)",
+    modal_background: "rgb(200,255,200)",
   },
   blue: {
     dayHeader: "rgb(21, 85, 170)",
@@ -40,6 +42,7 @@ export const colorTheme = {
     saveBtnDisabled: "rgb(150, 160, 175)",
     statsContainer: "rgba(10, 50, 120, 0.56)",
     smallCircle: "rgb(11, 85, 155)",
+    modal_background: "rgb(200,200,255)",
   },
   yellow: {
     dayHeader: "rgb(170, 140, 21)",
@@ -54,5 +57,6 @@ export const colorTheme = {
     saveBtnDisabled: "rgb(175, 170, 150)",
     statsContainer: "rgba(120, 100, 10, 0.56)",
     smallCircle: "rgb(155, 135, 11)",
+    modal_background: "rgb(255, 255, 220)",
   },
 };

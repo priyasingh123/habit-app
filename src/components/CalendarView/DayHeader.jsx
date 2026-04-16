@@ -1,5 +1,5 @@
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 import { forwardRef } from "react";
 
 export const DayHeader = forwardRef(

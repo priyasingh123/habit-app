@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState, useRef, lazy, Suspense } from "react";
-import { Month } from "./components/Month";
-import { Provider } from "./components/Provider";
+import { Month } from "./components/CalendarView/Month";
+import { Provider } from "./context/Provider";
 import { useHabitStore } from "./store/useHabitStore";
 import { Toaster, Toast } from "@chakra-ui/react";
 import { toaster } from "./components/toaster";

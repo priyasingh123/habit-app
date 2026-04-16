@@ -1,4 +1,4 @@
-import { useDayRecordStore } from "../store/useDayRecordStore.js";
+import { useDayRecordStore } from "../../store/useDayRecordStore";
 import { forwardRef, type Dispatch, type SetStateAction } from "react";
 
 type CustomDateProps = {
