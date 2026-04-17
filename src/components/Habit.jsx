@@ -5,7 +5,7 @@ import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { Icon } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
 
-const Habit = ({ habit, record, setRecord }) => {
+const Habit = ({ habit, record, setRecord, handleHabitDelete }) => {
   const colorTheme = useColorStore((state) => state.colorTheme);
   const { habitBanner, habitBannerHover, habitBannerHoverShadow } =
     theme[colorTheme];
@@ -51,7 +51,7 @@ const Habit = ({ habit, record, setRecord }) => {
       <CircleX
         className="delete_icon"
         size={22}
-        onClick={() => updateHabit(habit._id, { isArchived: true })}
+        onClick={() => handleHabitDelete(habit._id)}
       />
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         {editable ? (

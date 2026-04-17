@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHabitStore } from "../store/useHabitStore";
 import { useDayRecordStore } from "../store/useDayRecordStore";
 import { isSame } from "../utils/helperFunctions";
@@ -11,11 +11,14 @@ const HabitList = ({ record, setRecord }) => {
   const colorTheme = useColorStore((state) => state.colorTheme);
   const { saveBtn, saveBtnDisabled } = theme[colorTheme];
   const firstRef = useRef(false);
-  const habits = useHabitStore((state) => state.habits);
+  const updateHabit = useHabitStore((state) => state.updateHabit);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
   const date = useDayRecordStore((state) => state.date);
+  const [localHabits, setLocalHabits] = useState(
+    useHabitStore((state) => state.habits),
+  );
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
@@ -47,7 +50,27 @@ const HabitList = ({ record, setRecord }) => {
       });
   };
 
-  if (habits.length === 0) {
+  const handleHabitDelete = (habit_id) => {
+    const deletedIndex = localHabits.findIndex(
+      (habit) => habit._id === habit_id,
+    );
+
+    const deletedHabit = localHabits[deletedIndex];
+    // Optimistic remove
+    setLocalHabits((prev) => prev.filter((habit) => habit._id !== habit_id));
+    try {
+      updateHabit(habit_id, { isArchived: true });
+    } catch (error) {
+      console.log(error);
+      setLocalHabits((prev) => {
+        const copy = [...prev];
+        copy.splice(deletedIndex, 0, deletedHabit);
+        return copy;
+      });
+    }
+  };
+
+  if (localHabits.length === 0) {
     return (
       <div style={{ marginTop: "5%", fontSize: "x-large" }}>
         Add New Habits to show here !
@@ -72,7 +95,7 @@ const HabitList = ({ record, setRecord }) => {
         })}
       </header>
       <div className="habit_list_container">
-        {habits
+        {localHabits
           .filter((habit) => !habit.isArchived)
           .map((habit, index) => {
             return (
@@ -81,6 +104,7 @@ const HabitList = ({ record, setRecord }) => {
                 record={record}
                 habit={habit}
                 key={`${index}-${habit._id}`}
+                handleHabitDelete={handleHabitDelete}
               />
             );
           })}
