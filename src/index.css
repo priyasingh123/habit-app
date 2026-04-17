@@ -87,21 +87,26 @@
 /*Habit List*/
 
 .habit_list_container {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(auto-fill, minmax(40px, auto));
-  grid-auto-columns: minmax(120px, 1fr);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: stretch;
   gap: 8px;
   height: 100%;
   width: 100%;
+  overflow-x: auto;
 }
 
 .habit {
+  flex: 1 1 auto;
+  max-height: min-content;
+  min-height: 40px;
+  padding: 8px 12px;
   border-radius: 5px;
-  padding: 0.5% 1%;
-  margin: 0.25% 1%;
+  background: var(--habitBanner);
   display: flex;
-  background-color: var(--habitBanner); /*habitBanner*/
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 .habit:hover {
   background-color: var(--habitBannerHover); /*habitBannerHover*/
@@ -110,8 +115,8 @@
 
 .habit_text {
   flex: 1;
-  text-align: start;
-  font-size: medium;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .check_icon {
@@ -423,6 +428,8 @@
     margin-left: 5px;
   }
 }
+
+/*Floating AI Button*/
 
 .ai_fab {
   position: fixed;
