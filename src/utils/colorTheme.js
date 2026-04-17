@@ -13,6 +13,10 @@ export const colorTheme = {
     statsContainer: "rgba(95, 14, 3, 0.563)",
     smallCircle: "rgb(124, 11, 100)",
     modal_background: "rgb(255,200,200)",
+    aiFabGradientStart: "rgba(247 , 143, 200, 1)",
+    aiFabGradientEnd: "rgba(194 ,46 , 126, 1)",
+    aiFabShadow: "rgba(194 , 46, 126, 0.55)",
+    aiFabShadowHover: "rgba(247 , 143, 200, 0.75)",
   },
   green: {
     dayHeader: "rgb(21, 134, 96)",
@@ -28,6 +32,10 @@ export const colorTheme = {
     statsContainer: "rgba(14, 95, 3, 0.563)",
     smallCircle: "rgb(11, 124, 100)",
     modal_background: "rgb(200,255,200)",
+    aiFabGradientStart: "rgba(143, 247, 200, 1)",
+    aiFabGradientEnd: "rgba(46, 194, 126, 1)",
+    aiFabShadow: "rgba(46, 194, 126, 0.55)",
+    aiFabShadowHover: "rgba(143, 247, 200, 0.75)",
   },
   blue: {
     dayHeader: "rgb(21, 85, 170)",
@@ -43,6 +51,10 @@ export const colorTheme = {
     statsContainer: "rgba(10, 50, 120, 0.56)",
     smallCircle: "rgb(11, 85, 155)",
     modal_background: "rgb(200,200,255)",
+    aiFabGradientStart: "rgba(143, 200 , 247, 1)",
+    aiFabGradientEnd: "rgba(46, 126 , 194, 1)",
+    aiFabShadow: "rgba(46,126 , 194, 0.55)",
+    aiFabShadowHover: "rgba(143,200 , 247, 0.75)",
   },
   yellow: {
     dayHeader: "rgb(170, 140, 21)",
@@ -58,5 +70,9 @@ export const colorTheme = {
     statsContainer: "rgba(120, 100, 10, 0.56)",
     smallCircle: "rgb(155, 135, 11)",
     modal_background: "rgb(255, 255, 220)",
+    aiFabGradientStart: "rgba(255, 235, 133, 1)",
+    aiFabGradientEnd: "rgba(212, 160, 0, 1)",
+    aiFabShadow: "rgba(212, 160, 0, 0.55)",
+    aiFabShadowHover: "rgba(255, 235, 133, 0.75)",
   },
 };
