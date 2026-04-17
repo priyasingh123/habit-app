@@ -12,6 +12,7 @@ const HabitList = ({ record, setRecord }) => {
   const { saveBtn, saveBtnDisabled } = theme[colorTheme];
   const firstRef = useRef(false);
   const updateHabit = useHabitStore((state) => state.updateHabit);
+  const habits = useHabitStore((state) => state.habits);
   const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
@@ -28,6 +29,10 @@ const HabitList = ({ record, setRecord }) => {
     };
     fetchRecord();
   }, [fetchDayRecord]);
+
+  useEffect(() => {
+    setLocalHabits(habits);
+  }, [habits]);
 
   const isSaveBtnDisabled = () => {
     return isSame(record, dayRecord);

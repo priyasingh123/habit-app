@@ -12,6 +12,7 @@ import { useColorStore } from "../../store/useColorStore";
 import { colorTheme as theme } from "../../utils/colorTheme";
 import { generateHabits } from "../../services/aiSupport";
 import { useHabitStore } from "../../store/useHabitStore";
+import { toaster } from "../toaster";
 
 export const AIPromptModal = ({ openModal, setModalOpen }) => {
   const [prompt, setPrompt] = useState("");
@@ -20,23 +21,39 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
   const { dayHeader, modal_background } = theme[colorTheme];
   const handleGenerateHabits = async () => {
     try {
-      await generateHabits(prompt);
-      fetchHabits();
+      if (prompt) {
+        setModalOpen(false);
+        await generateHabits(prompt);
+        toaster.create({
+          title: "New Habits Created",
+          type: "success",
+          closable: true,
+        });
+        setPrompt("");
+        fetchHabits();
+      }
+      setPrompt("");
     } catch (error) {
       console.error("Error generating habits:", error);
+      toaster.create({
+        title: `Error generating habits: ${error.message}`,
+        type: "error",
+        closable: true,
+      });
     }
   };
   return (
     <DialogRoot open={openModal} onOpenChange={(e) => setModalOpen(e.open)}>
       <DialogContent
         position="absolute"
-        top="80px"
-        right="25%"
+        top={{ base: "60px", md: "80px" }}
+        right={{ base: "5%", md: "25%" }}
+        width={{ base: "90%", sm: "320px", md: "350px" }}
+        maxW="350px"
         bg="white"
         p="4"
         rounded="xl"
         shadow="xl"
-        maxW="350px"
         backgroundColor={modal_background}
       >
         <DialogHeader pt="-1" pb="2">
