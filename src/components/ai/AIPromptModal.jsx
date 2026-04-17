@@ -5,19 +5,29 @@ import {
   DialogTitle,
   DialogBody,
   DialogFooter,
-  DialogCloseTrigger,
   HStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useColorStore } from "../../store/useColorStore";
 import { colorTheme as theme } from "../../utils/colorTheme";
+import { generateHabits } from "../../services/aiSupport";
+import { useHabitStore } from "../../store/useHabitStore";
 
-export const AIPromptModal = () => {
-  const [open, setOpen] = useState(true);
+export const AIPromptModal = ({ openModal, setModalOpen }) => {
+  const [prompt, setPrompt] = useState("");
   const colorTheme = useColorStore((state) => state.colorTheme);
+  const fetchHabits = useHabitStore((state) => state.fetchHabits);
   const { dayHeader, modal_background } = theme[colorTheme];
+  const handleGenerateHabits = async () => {
+    try {
+      await generateHabits(prompt);
+      fetchHabits();
+    } catch (error) {
+      console.error("Error generating habits:", error);
+    }
+  };
   return (
-    <DialogRoot open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <DialogRoot open={openModal} onOpenChange={(e) => setModalOpen(e.open)}>
       <DialogContent
         position="absolute"
         top="80px"
@@ -35,15 +45,20 @@ export const AIPromptModal = () => {
               What do you want to achieve?
             </DialogTitle>
 
-            <DialogCloseTrigger
-              position="static"
-              color="black"
-              fontSize="20px"
-              w="32px"
-              h="32px"
+            <button
+              onClick={() => setModalOpen(false)}
+              style={{
+                background: "none",
+                border: "none",
+                color: "black",
+                fontSize: "20px",
+                cursor: "pointer",
+                width: "32px",
+                height: "32px",
+              }}
             >
               ✕
-            </DialogCloseTrigger>
+            </button>
           </HStack>
         </DialogHeader>
 
@@ -57,23 +72,25 @@ export const AIPromptModal = () => {
               padding: "8px",
               color: "black",
             }}
+            placeholder="I want to loose 2kgs in 2 months"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
         </DialogBody>
 
-        <DialogFooter>
+        <DialogFooter onClick={() => handleGenerateHabits()}>
           <button
             style={{
               backgroundColor: dayHeader,
               color: "white",
               padding: "8px 16px",
               borderRadius: "4px",
+              cursor: "pointer",
             }}
           >
             Generate Habits
           </button>
         </DialogFooter>
-
-        <DialogCloseTrigger />
       </DialogContent>
     </DialogRoot>
   );

@@ -2,11 +2,11 @@ import HabitList from "./HabitList";
 import Summary from "./Summary";
 import { useState } from "react";
 import MonthlyStats from "./MonthlyStats";
-import { AISupport } from "./ai/AISupport";
 import { AIPromptModal } from "./ai/AIPromptModal";
 
 const DrawerContent = ({ drawerBody, monthYear }) => {
   const [record, setRecord] = useState([]);
+  const [openModal, setModalOpen] = useState(false);
 
   return (
     <>
@@ -17,14 +17,14 @@ const DrawerContent = ({ drawerBody, monthYear }) => {
               <HabitList setRecord={setRecord} record={record} />
             </div>
             <div className="summary">
-              <Summary />
+              <Summary setModalOpen={setModalOpen} />
             </div>
           </>
         ) : (
           <MonthlyStats monthYear={monthYear} />
         )}
       </div>
-      <AIPromptModal />
+      <AIPromptModal openModal={openModal} setModalOpen={setModalOpen} />
     </>
   );
 };

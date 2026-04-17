@@ -2,7 +2,7 @@ import { AISupport } from "./ai/AISupport";
 import Loader from "./Loader";
 import NewHabit from "./NewHabit";
 
-const Summary = () => {
+const Summary = ({ setModalOpen }) => {
   return (
     <div>
       <div
@@ -13,7 +13,7 @@ const Summary = () => {
         <header className="summary_title" style={{ flex: 3 }}>
           Summary
         </header>
-        <AISupport style={{ flex: 1 }} onClick={() => {}} />
+        <AISupport style={{ flex: 1 }} onClick={() => setModalOpen(true)} />
       </div>
 
       <Loader />
