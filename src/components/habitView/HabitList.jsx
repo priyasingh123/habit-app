@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useHabitStore } from "../store/useHabitStore";
-import { useDayRecordStore } from "../store/useDayRecordStore";
-import { isSame } from "../utils/helperFunctions";
-import { toaster } from "./toaster";
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import { useHabitStore } from "../../store/useHabitStore";
+import { useDayRecordStore } from "../../store/useDayRecordStore";
+import { isSame } from "../../utils/helperFunctions";
+import { toaster } from "../toaster";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 import Habit from "./Habit";
 
 const HabitList = ({ record, setRecord }) => {

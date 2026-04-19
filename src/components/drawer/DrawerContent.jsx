@@ -1,8 +1,8 @@
-import HabitList from "./HabitList";
-import Summary from "./Summary";
+import HabitList from "../habitView/HabitList";
+import Summary from "../habitView/Summary";
 import { useState } from "react";
-import MonthlyStats from "./MonthlyStats";
-import { AIPromptModal } from "./ai/AIPromptModal";
+import MonthlyStats from "../monthlyStatsView/MonthlyStats";
+import { AIPromptModal } from "../ai/AIPromptModal";
 
 const DrawerContent = ({ drawerBody, monthYear }) => {
   const [record, setRecord] = useState([]);

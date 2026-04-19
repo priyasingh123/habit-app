@@ -1,6 +1,6 @@
-import { useColorStore } from "../store/useColorStore";
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useHabitStore } from "../store/useHabitStore";
+import { useColorStore } from "../../store/useColorStore";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useHabitStore } from "../../store/useHabitStore";
 import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { Icon } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";

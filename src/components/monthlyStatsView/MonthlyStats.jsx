@@ -1,7 +1,7 @@
 import HabitStats from "./HabitStats";
 import { useMemo, useEffect } from "react";
-import { useHabitStore } from "../store/useHabitStore";
-import { useDayRecordStore } from "../store/useDayRecordStore";
+import { useHabitStore } from "../../store/useHabitStore";
+import { useDayRecordStore } from "../../store/useDayRecordStore";
 
 const MonthlyStats = ({ monthYear }) => {
   const { habits } = useHabitStore();

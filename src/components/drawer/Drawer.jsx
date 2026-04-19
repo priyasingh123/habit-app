@@ -1,7 +1,7 @@
 import { Drawer } from "@chakra-ui/react";
-import DrawerContent from "../components/DrawerContent";
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import DrawerContent from "./DrawerContent";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 
 export const HabitDrawer = ({
   openDrawer,

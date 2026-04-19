@@ -1,7 +1,7 @@
-import { useDayRecordStore } from "../store/useDayRecordStore";
-import { useHabitStore } from "../store/useHabitStore";
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import { useDayRecordStore } from "../../store/useDayRecordStore";
+import { useHabitStore } from "../../store/useHabitStore";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 
 const Loader = () => {
   const colorTheme = useColorStore((state) => state.colorTheme);

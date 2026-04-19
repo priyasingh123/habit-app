@@ -1,4 +1,4 @@
-import { AISupport } from "./ai/AISupport";
+import { AISupport } from "../ai/AISupport";
 import Loader from "./Loader";
 import NewHabit from "./NewHabit";
 

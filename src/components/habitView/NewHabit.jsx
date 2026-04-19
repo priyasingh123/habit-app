@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useHabitStore } from "../store/useHabitStore";
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import { useHabitStore } from "../../store/useHabitStore";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 
 const NewHabit = () => {
   const colorTheme = useColorStore((state) => state.colorTheme);

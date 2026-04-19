@@ -1,15 +1,15 @@
 import "./App.css";
 import { useEffect, useState, useRef, lazy, Suspense } from "react";
-import { Month } from "./components/CalendarView/Month";
+import { Month } from "./components/calendarView/Month";
 import { Provider } from "./context/Provider";
 import { useHabitStore } from "./store/useHabitStore";
 import { Toaster, Toast } from "@chakra-ui/react";
 import { toaster } from "./components/toaster";
 
-const ColorPopUp = lazy(() => import("./components/ColorPopUp"));
+const ColorPopUp = lazy(() => import("./components/theme/ColorPopUp"));
 
 const HabitDrawer = lazy(() =>
-  import("./components/Drawer").then((module) => ({
+  import("./components/drawer/Drawer").then((module) => ({
     default: module.HabitDrawer,
   })),
 );

@@ -1,5 +1,5 @@
-import { colorTheme as theme } from "../utils/colorTheme";
-import { useColorStore } from "../store/useColorStore";
+import { colorTheme as theme } from "../../utils/colorTheme";
+import { useColorStore } from "../../store/useColorStore";
 import React from "react";
 
 const HabitStats = ({ habit, completedDays, daysInMonth }) => {
