@@ -4,19 +4,7 @@ import {
   createUpdateDayRecord,
   getDayRecordsByMonth,
 } from "../services/dayRecordService";
-
-type DayRecordStore = {
-  date: string | null;
-  dayRecord: string[];
-  monthRecord: Array<{ date: string; completed: string[] }>;
-  setStoreDate: (date: string) => void;
-  fetchDayRecord: () => Promise<string[] | undefined>;
-  updateDayRecord: (habitIds: string[]) => Promise<void>;
-  fetchMonthRecord: (
-    year: number,
-    month: number,
-  ) => Promise<Array<{ date: string; completed: string[] }> | undefined>;
-};
+import type { DayRecordStore } from "../types";
 
 export const useDayRecordStore = create<DayRecordStore>((set, get) => ({
   date: null,
@@ -35,14 +23,14 @@ export const useDayRecordStore = create<DayRecordStore>((set, get) => ({
       console.error("Error fetching day record:", error);
     }
   },
-  updateDayRecord: async (habitIds: string[]) => {
+  updateDayRecord: async (habitIds) => {
     const date = get().date;
     if (!date) return;
     const response = await createUpdateDayRecord(date, habitIds);
     set({ dayRecord: response.completed });
   },
 
-  fetchMonthRecord: async (year: number, month: number) => {
+  fetchMonthRecord: async (year, month) => {
     try {
       const monthlyRecord = await getDayRecordsByMonth(year, month);
       set({ monthRecord: monthlyRecord });

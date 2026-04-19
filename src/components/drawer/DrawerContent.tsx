@@ -4,9 +4,17 @@ import { useState } from "react";
 import MonthlyStats from "../monthlyStatsView/MonthlyStats";
 import { AIPromptModal } from "../ai/AIPromptModal";
 
-const DrawerContent = ({ drawerBody, monthYear }) => {
-  const [record, setRecord] = useState([]);
-  const [openModal, setModalOpen] = useState(false);
+type DrawerContentProps = {
+  drawerBody: "dailyStats" | "monthlyStats";
+  monthYear: { month: number; year: number };
+};
+
+export const DrawerContent = ({
+  drawerBody,
+  monthYear,
+}: DrawerContentProps) => {
+  const [record, setRecord] = useState<string[] | undefined>([]);
+  const [openModal, setModalOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -28,5 +36,3 @@ const DrawerContent = ({ drawerBody, monthYear }) => {
     </>
   );
 };
-
-export default DrawerContent;

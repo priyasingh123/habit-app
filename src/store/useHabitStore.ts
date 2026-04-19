@@ -4,8 +4,9 @@ import {
   getAllHabits,
   updateHabit,
 } from "../services/habitService";
+import type { HabitStore } from "../types";
 
-export const useHabitStore = create((set) => ({
+export const useHabitStore = create<HabitStore>((set) => ({
   habits: [],
   loading: false,
   fetchHabits: async () => {
