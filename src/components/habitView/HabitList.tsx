@@ -1,23 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { useHabitStore } from "../../store/useHabitStore";
 import { useDayRecordStore } from "../../store/useDayRecordStore";
 import { isSame } from "../../utils/helperFunctions";
 import { toaster } from "../toaster";
 import { colorTheme as theme } from "../../utils/colorTheme";
 import { useColorStore } from "../../store/useColorStore";
-import Habit from "./Habit";
+import HabitComponent from "./Habit";
+import type { HabitListProps, typeTheme, Habit } from "../../types";
 
-const HabitList = ({ record, setRecord }) => {
-  const colorTheme = useColorStore((state) => state.colorTheme);
+const HabitList = ({ record, setRecord }: HabitListProps) => {
+  const colorTheme = useColorStore<typeTheme>((state) => state.colorTheme);
   const { saveBtn, saveBtnDisabled } = theme[colorTheme];
-  const firstRef = useRef(false);
-  const updateHabit = useHabitStore((state) => state.updateHabit);
-  const habits = useHabitStore((state) => state.habits);
-  const fetchDayRecord = useDayRecordStore((state) => state.fetchDayRecord);
-  const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
-  const dayRecord = useDayRecordStore((state) => state.dayRecord);
-  const date = useDayRecordStore((state) => state.date);
-  const [localHabits, setLocalHabits] = useState(habits);
+  const firstRef = useRef<boolean>(false);
+  const updateHabit = useHabitStore<
+    (habitId: string, updatedData: Partial<Habit>) => Promise<void>
+  >((state) => state.updateHabit);
+  const habits = useHabitStore<Habit[]>((state) => state.habits);
+  const fetchDayRecord = useDayRecordStore<() => Promise<string[]>>(
+    (state) => state.fetchDayRecord,
+  );
+  const updateDayRecord = useDayRecordStore<
+    (habitIds: string[]) => Promise<void>
+  >((state) => state.updateDayRecord);
+  const dayRecord = useDayRecordStore<string[]>((state) => state.dayRecord);
+  const date = useDayRecordStore<string | null>((state) => state.date);
+  const [localHabits, setLocalHabits] = useState<Habit[]>(habits);
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
@@ -53,12 +61,15 @@ const HabitList = ({ record, setRecord }) => {
       });
   };
 
-  const handleHabitDelete = async (habit_id) => {
+  const handleHabitDelete = async (habit_id: string) => {
     const deletedIndex = localHabits.findIndex(
       (habit) => habit._id === habit_id,
     );
 
+    if (deletedIndex === -1) return;
     const deletedHabit = localHabits[deletedIndex];
+    if (!deletedHabit) return;
+
     // Optimistic remove
     setLocalHabits((prev) => prev.filter((habit) => habit._id !== habit_id));
     try {
@@ -80,6 +91,14 @@ const HabitList = ({ record, setRecord }) => {
       </div>
     );
   }
+  const displayDate = date
+    ? new Date(date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "-";
+
   return (
     <div
       style={{
@@ -89,20 +108,13 @@ const HabitList = ({ record, setRecord }) => {
         height: "100%",
       }}
     >
-      <header className="summary_title">
-        Date:{" "}
-        {new Date(date).toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}
-      </header>
+      <header className="summary_title">Date: {displayDate}</header>
       <div className="habit_list_container">
         {localHabits
           .filter((habit) => !habit.isArchived)
           .map((habit) => {
             return (
-              <Habit
+              <HabitComponent
                 setRecord={setRecord}
                 record={record}
                 habit={habit}
@@ -114,7 +126,12 @@ const HabitList = ({ record, setRecord }) => {
       </div>
       <button
         className="save_button"
-        style={{ "--saveBtn": saveBtn, "--saveBtnDisabled": saveBtnDisabled }}
+        style={
+          {
+            "--saveBtn": saveBtn,
+            "--saveBtnDisabled": saveBtnDisabled,
+          } as CSSProperties
+        }
         onClick={() => handleSaveChanges()}
         disabled={isSaveBtnDisabled()}
       >

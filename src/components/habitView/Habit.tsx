@@ -4,15 +4,18 @@ import { useHabitStore } from "../../store/useHabitStore";
 import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { Icon } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
+import type { HabitProps, typeTheme, Habit } from "../../types";
 
-const Habit = ({ habit, record, setRecord, handleHabitDelete }) => {
-  const colorTheme = useColorStore((state) => state.colorTheme);
+const Habit = ({ habit, record, setRecord, handleHabitDelete }: HabitProps) => {
+  const colorTheme = useColorStore<typeTheme>((state) => state.colorTheme);
   const { habitBanner, habitBannerHover, habitBannerHoverShadow } =
     theme[colorTheme];
-  const updateHabit = useHabitStore((state) => state.updateHabit);
-  const [editable, setEditable] = useState(false);
-  const [localTitle, setLocalTitle] = useState(habit.title);
-  const habitRef = useRef(null);
+  const updateHabit = useHabitStore<
+    (habitId: string, updatedData: Partial<Habit>) => Promise<void>
+  >((state) => state.updateHabit);
+  const [editable, setEditable] = useState<boolean>(false);
+  const [localTitle, setLocalTitle] = useState<string>(habit.title);
+  const habitRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!editable && localTitle !== habit.title) {
@@ -21,8 +24,8 @@ const Habit = ({ habit, record, setRecord, handleHabitDelete }) => {
   }, [editable, localTitle, habit.title, updateHabit, habit._id]);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (habitRef.current && !habitRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (habitRef.current && !habitRef.current.contains(e.target as Node)) {
         setEditable(false);
       }
     };
@@ -30,7 +33,7 @@ const Habit = ({ habit, record, setRecord, handleHabitDelete }) => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const handleHabitComplete = (id) => {
+  const handleHabitComplete = (id: string) => {
     if (record.includes(id)) {
       setRecord((prev) => prev.filter((habitId) => habitId !== id));
     } else {
@@ -42,11 +45,13 @@ const Habit = ({ habit, record, setRecord, handleHabitDelete }) => {
     <div
       ref={habitRef}
       className="habit"
-      style={{
-        "--habitBanner": habitBanner,
-        "--habitBannerHover": habitBannerHover,
-        "--habitBannerHoverShadow": habitBannerHoverShadow,
-      }}
+      style={
+        {
+          "--habitBanner": habitBanner,
+          "--habitBannerHover": habitBannerHover,
+          "--habitBannerHoverShadow": habitBannerHoverShadow,
+        } as React.CSSProperties
+      }
     >
       <CircleX
         className="delete_icon"

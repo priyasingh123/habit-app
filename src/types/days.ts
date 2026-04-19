@@ -3,7 +3,7 @@ export type DayRecordStore = {
   dayRecord: string[];
   monthRecord: Array<{ date: string; completed: string[] }>;
   setStoreDate: (date: string) => void;
-  fetchDayRecord: () => Promise<string[] | undefined>;
+  fetchDayRecord: () => Promise<string[]>;
   updateDayRecord: (habitIds: string[]) => Promise<void>;
   fetchMonthRecord: (
     year: number,

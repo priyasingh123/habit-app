@@ -13,7 +13,7 @@ export const DrawerContent = ({
   drawerBody,
   monthYear,
 }: DrawerContentProps) => {
-  const [record, setRecord] = useState<string[] | undefined>([]);
+  const [record, setRecord] = useState<string[]>([]);
   const [openModal, setModalOpen] = useState<boolean>(false);
 
   return (
