@@ -17,9 +17,7 @@ const HabitList = ({ record, setRecord }) => {
   const updateDayRecord = useDayRecordStore((state) => state.updateDayRecord);
   const dayRecord = useDayRecordStore((state) => state.dayRecord);
   const date = useDayRecordStore((state) => state.date);
-  const [localHabits, setLocalHabits] = useState(
-    useHabitStore((state) => state.habits),
-  );
+  const [localHabits, setLocalHabits] = useState(habits);
   useEffect(() => {
     if (firstRef.current) return;
     firstRef.current = true;
@@ -55,7 +53,7 @@ const HabitList = ({ record, setRecord }) => {
       });
   };
 
-  const handleHabitDelete = (habit_id) => {
+  const handleHabitDelete = async (habit_id) => {
     const deletedIndex = localHabits.findIndex(
       (habit) => habit._id === habit_id,
     );
@@ -64,7 +62,7 @@ const HabitList = ({ record, setRecord }) => {
     // Optimistic remove
     setLocalHabits((prev) => prev.filter((habit) => habit._id !== habit_id));
     try {
-      updateHabit(habit_id, { isArchived: true });
+      await updateHabit(habit_id, { isArchived: true });
     } catch (error) {
       console.log(error);
       setLocalHabits((prev) => {
@@ -102,13 +100,13 @@ const HabitList = ({ record, setRecord }) => {
       <div className="habit_list_container">
         {localHabits
           .filter((habit) => !habit.isArchived)
-          .map((habit, index) => {
+          .map((habit) => {
             return (
               <Habit
                 setRecord={setRecord}
                 record={record}
                 habit={habit}
-                key={`${index}-${habit._id}`}
+                key={habit._id}
                 handleHabitDelete={handleHabitDelete}
               />
             );

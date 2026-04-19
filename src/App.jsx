@@ -33,7 +33,7 @@ function App() {
     if (firstFetchedRef.current) return;
     firstFetchedRef.current = true;
     fetchHabits();
-  }, []);
+  }, [fetchHabits]);
   const handleLeftClick = () => {
     setThisMonth(
       (prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1),

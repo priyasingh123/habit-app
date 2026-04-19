@@ -1,11 +1,12 @@
 import { colorTheme as theme } from "../../utils/colorTheme";
 import { useColorStore } from "../../store/useColorStore";
+import type { Dispatch, SetStateAction } from "react";
 
 type DayHeaderProps = {
   date: Date;
-  setOpenDrawer: (open: boolean) => void;
-  setDrawerBody: (body: string) => void;
-  setMonthYear: (monthYear: { month: number; year: number }) => void;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
+  setDrawerBody: Dispatch<SetStateAction<"dailyStats" | "monthlyStats">>;
+  setMonthYear: Dispatch<SetStateAction<{ month: number; year: number }>>;
 };
 
 export const DayHeader = ({
