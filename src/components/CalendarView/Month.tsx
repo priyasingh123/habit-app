@@ -1,14 +1,6 @@
-import { type SetStateAction, type Dispatch } from "react";
 import { DayHeader } from "./DayHeader";
 import { Days } from "./Days";
-
-type MonthProps = {
-  date: Date;
-  today: number | null;
-  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
-  setDrawerBody: Dispatch<SetStateAction<"dailyStats" | "monthlyStats">>;
-  setMonthYear: Dispatch<SetStateAction<{ month: number; year: number }>>;
-};
+import type { MonthProps } from "../../types/days";
 
 export const Month = ({
   date,

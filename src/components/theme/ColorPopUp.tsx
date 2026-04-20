@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useColorStore } from "../store/useColorStore";
+import { useColorStore } from "../../store/useColorStore";
 
 const ColorPopUp = ({ setShowPalette }) => {
   const setColorTheme = useColorStore((state) => state.setColorTheme);

@@ -1,13 +1,6 @@
 import { useDayRecordStore } from "../../store/useDayRecordStore";
-import type { Dispatch, SetStateAction } from "react";
+import type { CustomDateProps } from "../../types/days";
 
-type CustomDateProps = {
-  dayNumber?: number | undefined;
-  todaysDate?: number | null;
-  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
-  date?: Date;
-  setDrawerBody: Dispatch<SetStateAction<"dailyStats" | "monthlyStats">>;
-};
 export const CustomDate = ({
   dayNumber,
   todaysDate,

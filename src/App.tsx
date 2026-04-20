@@ -5,6 +5,7 @@ import { Provider } from "./context/Provider";
 import { useHabitStore } from "./store/useHabitStore";
 import { Toaster, Toast } from "@chakra-ui/react";
 import { toaster } from "./components/toaster";
+import type { DrawerContentProps, DrawerBody } from "./types";
 
 const ColorPopUp = lazy(() => import("./components/theme/ColorPopUp"));
 
@@ -15,14 +16,13 @@ const HabitDrawer = lazy(() =>
 );
 
 function App() {
-  const firstFetchedRef = useRef(false);
-  const clickStartRef = useRef(0);
-  const [monthYear, setMonthYear] = useState({
+  const firstFetchedRef = useRef<boolean>(false);
+  const [monthYear, setMonthYear] = useState<DrawerContentProps["monthYear"]>({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
   });
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [drawerBody, setDrawerBody] = useState("dailyStats");
+  const [drawerBody, setDrawerBody] = useState<DrawerBody>("dailyStats");
   const [thisMonth, setThisMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );
@@ -46,7 +46,7 @@ function App() {
     );
   };
 
-  const isSameMonth = (date) => {
+  const isSameMonth = (date: Date) => {
     const today = new Date();
     if (
       date.getFullYear() === today.getFullYear() &&
@@ -86,7 +86,6 @@ function App() {
             today={isSameMonth(lastMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
-            ref={clickStartRef}
             setMonthYear={setMonthYear}
           />
         </div>
@@ -97,7 +96,6 @@ function App() {
             today={isSameMonth(thisMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
-            ref={clickStartRef}
             setMonthYear={setMonthYear}
           />
         </div>
@@ -107,7 +105,6 @@ function App() {
             today={isSameMonth(nextMonth)}
             setOpenDrawer={setOpenDrawer}
             setDrawerBody={setDrawerBody}
-            ref={clickStartRef}
             setMonthYear={setMonthYear}
           />
         </div>
@@ -131,7 +128,6 @@ function App() {
           openDrawer={openDrawer}
           setOpenDrawer={setOpenDrawer}
           drawerBody={drawerBody}
-          ref={clickStartRef}
           monthYear={monthYear}
         />
       </Suspense>
