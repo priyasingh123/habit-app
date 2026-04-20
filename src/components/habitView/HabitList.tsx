@@ -7,10 +7,11 @@ import { toaster } from "../toaster";
 import { colorTheme as theme } from "../../utils/colorTheme";
 import { useColorStore } from "../../store/useColorStore";
 import HabitComponent from "./Habit";
-import type { HabitListProps, typeTheme, Habit } from "../../types";
+import type { HabitListProps, Habit } from "../../types";
+import type { ColorTheme } from "../../utils/colorTheme";
 
 const HabitList = ({ record, setRecord }: HabitListProps) => {
-  const colorTheme = useColorStore<typeTheme>((state) => state.colorTheme);
+  const colorTheme = useColorStore<ColorTheme>((state) => state.colorTheme);
   const { saveBtn, saveBtnDisabled } = theme[colorTheme];
   const firstRef = useRef<boolean>(false);
   const updateHabit = useHabitStore<

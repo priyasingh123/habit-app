@@ -4,10 +4,16 @@ import { useHabitStore } from "../../store/useHabitStore";
 import { CheckSquare, Square, CircleX, Pencil } from "lucide-react";
 import { Icon } from "@chakra-ui/react";
 import { useState, useEffect, useRef } from "react";
-import type { HabitProps, typeTheme, Habit } from "../../types";
+import type { HabitProps, Habit } from "../../types";
+import type { ColorTheme } from "../../utils/colorTheme";
 
-const Habit = ({ habit, record, setRecord, handleHabitDelete }: HabitProps) => {
-  const colorTheme = useColorStore<typeTheme>((state) => state.colorTheme);
+const HabitComponent = ({
+  habit,
+  record,
+  setRecord,
+  handleHabitDelete,
+}: HabitProps) => {
+  const colorTheme = useColorStore<ColorTheme>((state) => state.colorTheme);
   const { habitBanner, habitBannerHover, habitBannerHoverShadow } =
     theme[colorTheme];
   const updateHabit = useHabitStore<
@@ -90,4 +96,4 @@ const Habit = ({ habit, record, setRecord, handleHabitDelete }: HabitProps) => {
   );
 };
 
-export default Habit;
+export default HabitComponent;

@@ -26,7 +26,7 @@ const NewHabit = () => {
       <button
         className="new_btn"
         onClick={handleAdd}
-        style={{ "--newBtn": newBtn }}
+        style={{ "--newBtn": newBtn } as React.CSSProperties}
       >
         Add
       </button>

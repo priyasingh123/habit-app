@@ -75,4 +75,6 @@ export const colorTheme = {
     aiFabShadow: "rgba(212, 160, 0, 0.55)",
     aiFabShadowHover: "rgba(255, 235, 133, 0.75)",
   },
-};
+} as const;
+
+export type ColorTheme = keyof typeof colorTheme;

@@ -14,13 +14,14 @@ export const useDayRecordStore = create<DayRecordStore>((set, get) => ({
   fetchDayRecord: async () => {
     try {
       const date = get().date;
-      if (!date) return;
+      if (!date) return [];
       const response = await getDayRecord(date);
 
       set({ dayRecord: response.completed });
       return response.completed;
     } catch (error) {
       console.error("Error fetching day record:", error);
+      throw error;
     }
   },
   updateDayRecord: async (habitIds) => {

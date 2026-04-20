@@ -2,18 +2,22 @@ import HabitStats from "./HabitStats";
 import { useEffect } from "react";
 import { useHabitStore } from "../../store/useHabitStore";
 import { useDayRecordStore } from "../../store/useDayRecordStore";
+import type { MonthlyStatsProps } from "../../types";
 
-const MonthlyStats = ({ monthYear }) => {
+const MonthlyStats = ({ monthYear }: MonthlyStatsProps) => {
   const { habits } = useHabitStore();
   const { monthRecord, date, fetchMonthRecord } = useDayRecordStore();
 
   const activeHabits = habits.filter((habit) => !habit.isArchived);
 
-  const sourceDate = monthRecord.length > 0 ? monthRecord[0].date : date;
+  const sourceDate =
+    monthRecord.length > 0
+      ? monthRecord[0].date
+      : (date ?? new Date().toISOString());
   const d = new Date(sourceDate);
   const daysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
 
-  const statsMap = {};
+  const statsMap: Record<string, number> = {};
   for (const day of monthRecord) {
     for (const id of day.completed) {
       statsMap[id] = (statsMap[id] || 0) + 1;

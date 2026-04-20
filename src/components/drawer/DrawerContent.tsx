@@ -3,11 +3,7 @@ import Summary from "../habitView/Summary";
 import { useState } from "react";
 import MonthlyStats from "../monthlyStatsView/MonthlyStats";
 import { AIPromptModal } from "../ai/AIPromptModal";
-
-type DrawerContentProps = {
-  drawerBody: "dailyStats" | "monthlyStats";
-  monthYear: { month: number; year: number };
-};
+import type { DrawerContentProps } from "../../types";
 
 export const DrawerContent = ({
   drawerBody,

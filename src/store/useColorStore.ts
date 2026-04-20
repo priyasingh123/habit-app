@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import type { ColorStore, typeTheme } from "../types";
+import type { ColorStore, ColorTheme } from "../types";
 
 export const useColorStore = create<ColorStore>((set) => ({
   colorTheme: "green",
-  setColorTheme: (theme: typeTheme) => set({ colorTheme: theme }),
+  setColorTheme: (theme: ColorTheme) => set({ colorTheme: theme }),
 }));

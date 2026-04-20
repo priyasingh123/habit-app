@@ -2,6 +2,7 @@ import { useDayRecordStore } from "../../store/useDayRecordStore";
 import { useHabitStore } from "../../store/useHabitStore";
 import { colorTheme as theme } from "../../utils/colorTheme";
 import { useColorStore } from "../../store/useColorStore";
+import type React from "react";
 
 const Loader = () => {
   const colorTheme = useColorStore((state) => state.colorTheme);
@@ -23,19 +24,21 @@ const Loader = () => {
       <div className="circle_loader">
         <div
           className="progress_ring"
-          style={{
-            "--progress": percentage * 3.6 + "deg",
-            "--ringColor":
-              percentage <= 30
-                ? "rgb(255, 99, 132)"
-                : percentage <= 60
-                  ? "rgb(255, 205, 86)"
-                  : "rgb(75, 192, 192)",
-          }}
+          style={
+            {
+              "--progress": percentage * 3.6 + "deg",
+              "--ringColor":
+                percentage <= 30
+                  ? "rgb(255, 99, 132)"
+                  : percentage <= 60
+                    ? "rgb(255, 205, 86)"
+                    : "rgb(75, 192, 192)",
+            } as React.CSSProperties
+          }
         >
           <div
             className="inner_circle"
-            style={{ "--innerCircle": innerCircle }}
+            style={{ "--innerCircle": innerCircle } as React.CSSProperties}
           >
             {percentage.toFixed(2)}%
           </div>

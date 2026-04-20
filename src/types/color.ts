@@ -1,6 +1,6 @@
-export type typeTheme = "green" | "blue" | "red" | "yellow";
+import type { ColorTheme } from "../utils/colorTheme";
 
 export type ColorStore = {
-  colorTheme: typeTheme;
-  setColorTheme: (theme: typeTheme) => void;
+  colorTheme: ColorTheme;
+  setColorTheme: (theme: ColorTheme) => void;
 };

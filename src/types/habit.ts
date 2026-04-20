@@ -27,3 +27,20 @@ export interface HabitListProps {
   record: string[];
   setRecord: Dispatch<SetStateAction<string[]>>;
 }
+
+export type SummaryProps = {
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export type HabitStatsProps = {
+  habit: Habit;
+  completedDays: number;
+  daysInMonth: number;
+};
+
+export type DrawerContentProps = {
+  drawerBody: "dailyStats" | "monthlyStats";
+  monthYear: { month: number; year: number };
+};
+
+export type MonthlyStatsProps = Pick<DrawerContentProps, "monthYear">;
