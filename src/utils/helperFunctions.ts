@@ -1,4 +1,4 @@
-export const isSame = (arr1, arr2) => {
+export const isSame = <T>(arr1: T[], arr2: T[]): boolean => {
   if (arr1.length !== arr2.length) {
     return false;
   }

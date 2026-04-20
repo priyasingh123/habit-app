@@ -1,12 +1,4 @@
-import {
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogBody,
-  DialogFooter,
-  HStack,
-} from "@chakra-ui/react";
+import { Dialog, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { useColorStore } from "../../store/useColorStore";
 import { colorTheme as theme } from "../../utils/colorTheme";
@@ -14,7 +6,36 @@ import { generateHabits } from "../../services/aiSupport";
 import { useHabitStore } from "../../store/useHabitStore";
 import { toaster } from "../toaster";
 
-export const AIPromptModal = ({ openModal, setModalOpen }) => {
+declare module "@chakra-ui/react" {
+  interface DialogContentProps {
+    children?: React.ReactNode;
+    position?: any;
+    top?: any;
+    right?: any;
+    width?: any;
+    maxW?: any;
+    bg?: any;
+    p?: any;
+    rounded?: any;
+    shadow?: any;
+    backgroundColor?: any;
+  }
+  interface DialogTitleProps {
+    children?: React.ReactNode;
+    color?: any;
+    fontSize?: any;
+  }
+}
+
+interface AIPromptModalProps {
+  openModal: boolean;
+  setModalOpen: (open: boolean) => void;
+}
+
+export const AIPromptModal = ({
+  openModal,
+  setModalOpen,
+}: AIPromptModalProps) => {
   const [prompt, setPrompt] = useState("");
   const colorTheme = useColorStore((state) => state.colorTheme);
   const fetchHabits = useHabitStore((state) => state.fetchHabits);
@@ -36,15 +57,18 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
     } catch (error) {
       console.error("Error generating habits:", error);
       toaster.create({
-        title: `Error generating habits: ${error.message}`,
+        title: `Error generating habits: ${error instanceof Error ? error.message : "Unknown error"}`,
         type: "error",
         closable: true,
       });
     }
   };
   return (
-    <DialogRoot open={openModal} onOpenChange={(e) => setModalOpen(e.open)}>
-      <DialogContent
+    <Dialog.Root
+      open={openModal}
+      onOpenChange={(e: { open: boolean }) => setModalOpen(e.open)}
+    >
+      <Dialog.Content
         position="absolute"
         top={{ base: "60px", md: "80px" }}
         right={{ base: "5%", md: "25%" }}
@@ -56,11 +80,11 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
         shadow="xl"
         backgroundColor={modal_background}
       >
-        <DialogHeader pt="-1" pb="2">
+        <Dialog.Header pt="-1" pb="2">
           <HStack justify="space-between" align="center">
-            <DialogTitle color="black" fontSize="md">
+            <Dialog.Title color="black" fontSize="md">
               What do you want to achieve?
-            </DialogTitle>
+            </Dialog.Title>
 
             <button
               onClick={() => setModalOpen(false)}
@@ -77,9 +101,9 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
               ✕
             </button>
           </HStack>
-        </DialogHeader>
+        </Dialog.Header>
 
-        <DialogBody>
+        <Dialog.Body>
           <textarea
             style={{
               width: "100%",
@@ -93,9 +117,9 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
-        </DialogBody>
+        </Dialog.Body>
 
-        <DialogFooter onClick={() => handleGenerateHabits()}>
+        <Dialog.Footer onClick={() => handleGenerateHabits()}>
           <button
             style={{
               backgroundColor: dayHeader,
@@ -107,8 +131,8 @@ export const AIPromptModal = ({ openModal, setModalOpen }) => {
           >
             Generate Habits
           </button>
-        </DialogFooter>
-      </DialogContent>
-    </DialogRoot>
+        </Dialog.Footer>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 };
