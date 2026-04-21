@@ -5,6 +5,7 @@
     "checkJs": false,
     "noEmit": true, // Don't create .js files from .ts files, just check for errors
     "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types"],
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
