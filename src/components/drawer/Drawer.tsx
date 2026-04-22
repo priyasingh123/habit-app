@@ -36,6 +36,7 @@ export const HabitDrawer = ({
             borderTopRadius="2xl"
             bg={drawer_bg}
             color="white"
+            data-testid="habit-drawer"
           >
             <Drawer.CloseTrigger />
 
