@@ -2,7 +2,7 @@ import { test, expect, Page, chromium } from "@playwright/test";
 
 test.describe("Habit Calendar tests", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173/habit-app/");
+    await page.goto("/habit-app/");
   });
 
   test("should land on page with title 'habit-app'", async ({ page }) => {
