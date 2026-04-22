@@ -79,7 +79,11 @@ function App() {
         )}
       </Toaster>
       <div className="year-board">
-        <button className="arrow-btn right" onClick={handleLeftClick}></button>
+        <button
+          data-testid="left-arrow"
+          className="arrow-btn right"
+          onClick={handleLeftClick}
+        ></button>
         <div className="month prev">
           <Month
             date={lastMonth}
@@ -121,7 +125,11 @@ function App() {
             </Suspense>
           )}
         </div>
-        <button className="arrow-btn left" onClick={handleRightClick}></button>
+        <button
+          data-testid="right-arrow"
+          className="arrow-btn left"
+          onClick={handleRightClick}
+        ></button>
       </div>
       <Suspense fallback={<div>Loading...</div>}>
         <HabitDrawer

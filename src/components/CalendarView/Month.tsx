@@ -17,7 +17,10 @@ export const Month = ({
   ).getDate();
 
   return (
-    <div className="calender">
+    <div
+      className="calender"
+      data-testid={`month-${date.toLocaleString("default", { month: "short" })} ${date.getFullYear()}`}
+    >
       <DayHeader
         date={date}
         setOpenDrawer={setOpenDrawer}

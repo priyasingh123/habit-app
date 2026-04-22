@@ -27,6 +27,7 @@ export const CustomDate = ({
       className={dayNumber && dayNumber === todaysDate ? "today" : ""}
       style={{ cursor: "pointer" }}
       onClick={handleClick}
+      data-testid="day"
     >
       {dayNumber}
     </span>
