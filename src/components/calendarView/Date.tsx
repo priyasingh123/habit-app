@@ -22,14 +22,34 @@ export const CustomDate = ({
     }
   };
 
+  const fullDate =
+    date && dayNumber
+      ? new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          dayNumber,
+        ).toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      : "";
+
   return (
-    <span
+    <button
       className={dayNumber && dayNumber === todaysDate ? "today" : ""}
+      aria-label={
+        dayNumber
+          ? dayNumber === todaysDate
+            ? `Today, ${fullDate}`
+            : fullDate
+          : "Empty date cell"
+      }
       style={{ cursor: "pointer" }}
       onClick={handleClick}
       data-testid="day"
     >
       {dayNumber}
-    </span>
+    </button>
   );
 };
