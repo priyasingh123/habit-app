@@ -44,8 +44,7 @@ test.describe(() => {
       .click();
     const drawer = page.getByTestId("habit-drawer");
     await expect(drawer).toBeVisible({ timeout: 5000 });
-    await page.mouse.click(10, 10);
+    await page.keyboard.press("Escape");
     await expect(drawer).not.toBeVisible({ timeout: 5000 });
-    await page.screenshot({ path: "habit-drawer-closed.png", fullPage: true });
   });
 });
