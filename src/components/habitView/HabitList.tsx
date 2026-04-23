@@ -84,14 +84,6 @@ const HabitList = ({ record, setRecord }: HabitListProps) => {
       });
     }
   };
-
-  if (localHabits.length === 0) {
-    return (
-      <div style={{ marginTop: "5%", fontSize: "x-large" }}>
-        Add New Habits to show here !
-      </div>
-    );
-  }
   const displayDate = date
     ? new Date(date).toLocaleDateString("en-GB", {
         day: "numeric",
@@ -111,19 +103,25 @@ const HabitList = ({ record, setRecord }: HabitListProps) => {
     >
       <header className="summary_title">Date: {displayDate}</header>
       <div className="habit_list_container">
-        {localHabits
-          .filter((habit) => !habit.isArchived)
-          .map((habit) => {
-            return (
-              <HabitComponent
-                setRecord={setRecord}
-                record={record}
-                habit={habit}
-                key={habit._id}
-                handleHabitDelete={handleHabitDelete}
-              />
-            );
-          })}
+        {localHabits.length > 0 ? (
+          localHabits
+            .filter((habit) => !habit.isArchived)
+            .map((habit) => {
+              return (
+                <HabitComponent
+                  setRecord={setRecord}
+                  record={record}
+                  habit={habit}
+                  key={habit._id}
+                  handleHabitDelete={handleHabitDelete}
+                />
+              );
+            })
+        ) : (
+          <div style={{ marginTop: "5%", fontSize: "x-large" }}>
+            Add New Habits to show here !
+          </div>
+        )}
       </div>
       <button
         className="save_button"
