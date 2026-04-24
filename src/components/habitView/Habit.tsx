@@ -86,7 +86,7 @@ const HabitComponent = ({
           }}
         />
       </div>
-      <div className="check_icon">
+      <div className="check_icon" data-completed={record.includes(habit._id)}>
         <Icon
           as={!record.includes(habit._id) ? Square : CheckSquare}
           onClick={() => handleHabitComplete(habit._id)}
