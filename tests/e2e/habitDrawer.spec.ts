@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe(() => {
+test.describe("Habit Drawer", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/habit-app/");
   });
@@ -12,7 +12,7 @@ test.describe(() => {
       .first()
       .click();
     const drawer = page.getByTestId("habit-drawer");
-    await expect(drawer).toBeVisible({ timeout: 5000 });
+    await expect(drawer).toBeVisible();
   });
 
   test("should show same date on drawer which date is clicked", async ({
@@ -30,7 +30,7 @@ test.describe(() => {
     });
 
     const habitDrawer = page.getByTestId("habit-drawer");
-    await expect(habitDrawer).toBeVisible({ timeout: 5000 });
+    await expect(habitDrawer).toBeVisible();
     await expect(habitDrawer).toContainText(previousMonthDate);
   });
 
@@ -43,8 +43,8 @@ test.describe(() => {
       .first()
       .click();
     const drawer = page.getByTestId("habit-drawer");
-    await expect(drawer).toBeVisible({ timeout: 5000 });
+    await expect(drawer).toBeVisible();
     await page.keyboard.press("Escape");
-    await expect(drawer).not.toBeVisible({ timeout: 5000 });
+    await expect(drawer).not.toBeVisible();
   });
 });
